@@ -1,7 +1,226 @@
-:orphan:
-
 .. _qs_single_layer:
 
 =======================
 Map With A Single Layer
 =======================
+
+This first tutorial shows how MapServer can display a dataset on a web page. 
+ 
+Live Example
+------------
+
+Once you have successfully configured MapServer you can update the two text boxes
+below with your own webserver address, and path to your mapfile. 
+
+The results should look the same as below, which is running from a live demo server. 
+
+.. raw:: html
+	:file: single_layer.html
+
+Mapfile Structure
+-----------------
+
+This is what the mapfile looks like: :ref:`single_layer.map <qs_single_layer_map>`.
+
+The :ref:`MAPFILE <mapfile>` is MapServer's basic configuration
+mechanism. It is made up of "objects" and each object can have
+keywords or other objects. It has a hierarchical structure such that
+some objects are beneath under other objects. At the top of this hierarchy is
+the MAP object - to which all other objects belong. This example shows a
+very straightforward hierarchy of objects.  As you go through each tutorial step, 
+the complexity of these hierarchical trees will increase.
+
+A few quick notes about mapfiles: we define each object in the mapfile
+with the object name and we close it with "END" and we precede
+comments with a pound (#) sign.
+
+Let's break "single_layer.map" down by objects. Its structure looks like
+this:
+
+::
+
+  MAP
+   |-LAYER
+      |-CLASS
+         |-STYLE
+
+MAP Object
+**********
+
+Let's look at the keywords (parameters) within the MAP object:
+
+**MAP**
+   Every mapfile must start with the :ref:`MAP <map>` object--the
+   entire mapfile is the MAP object.
+
+**IMAGETYPE**
+   The keyword IMAGETYPE is used to define which image format the
+   MapServer CGI program should use for output. In this case we are
+   using indexed color PNG (similar to GIF). This could be GIF, if we
+   compiled the GD library with GIF support, WBMP, or JPEG. We can
+   also specify other output options (PDF, SWF, GeoTIFF) provided that
+   we compiled support for them and specify them with the OUTPUTFORMAT
+   object. The OUTPUTFORMAT goes beyond the scope of this tutorial but
+   you can find out more about by reading through documentations in
+   the MapServer web site.
+
+**EXTENT**
+   This parameter specifies the output extent of our map--the bounding
+   box of our initial map.  The EXTENT values are given in this
+   format::
+
+     <Lower Left X> <Lower Left Y> <Upper Right X> <Upper Right Y>
+
+   with spaces separating each value. This needs to be in the same
+   units as the data or, if specifying a different output projection,
+   in the same units as the output projection.
+
+   In this example our data is in geographic projection so the units
+   are in decimal degrees.  You can use the utility `ogrinfo
+   <http://gdal.osgeo.org/ogr_utilities.html>`_, which is part of the
+   GDAL/OGR library package, to get the extent of a particular
+   Shapefile dataset (or other supported vector formats).  Here is the
+   command I used to get the extent for this example::
+
+     ogrinfo -al -so states_ugl.shp
+
+   This returned the following output::
+
+     INFO: Open of `states_ugl.shp' using driver `ESRI Shapefile' successful.
+     Layer name: states_ugl
+     Geometry: Polygon
+     Feature Count: 204
+     Extent: (-97.238976, 41.619778) - (-82.122902, 49.385620)
+     Layer SRS WKT:(unknown)
+     AREA: Real (12.3)
+     PERIMETER: Real (12.3)
+     STATESP020: Real (11.0)STATE: String (20.0)
+     STATE_FIPS: String (2.0)
+     CLASS: String (5.0)
+
+   You can also use ArcView or an open source GIS packages--QGIS,
+   Thuban, etc.
+
+   Feel free to change the values of EXTENT to get a better
+   understanding of how it changes your map.
+
+**SIZE**
+   This is the size of the image (the map) that MapServer will
+   generate, in pixels. So our map is 400 pixels wide by 300 pixels
+   high.  Again, change this to your heart's content and see how it
+   affects your map.
+
+**SHAPEPATH**
+   This is the path to your data layers. You can provide absolute
+   paths (i.e. "/ms4w/apps/tutorial/data" or
+   "C:/ms4w/apps/tutorial/data") or paths relative to your mapfile's
+   location (in this example, you'd use "../data"). This path doesn't
+   have to be web accessible, and probably shouldn't be unless you
+   want anyone to download your raw data. It has nothing directly to
+   do with the web so don't even think of URLs here.  Just make sure
+   that the user running the web server (usually "nobody" or "apache"
+   in the \*nix world) can READ the data in the SHAPEPATH.
+
+**IMAGECOLOR**
+   This is the background color of your map. The values are RGB values
+   so 255 Red, 255 Green, and 255 Blue which results in a white
+   background.  Go ahead and play with this values.
+
+LAYER Object
+************
+
+Now let's look at the LAYER object parameters:
+
+.. literalinclude:: single_layer.map
+    :language: mapfile
+    :start-after: # START OF THE LAYER DEFINITION
+    :end-before: # END OF THE LAYER DEFINITION 
+    :dedent: 4
+
+**LAYER**
+   Marks the beginning of a :ref:`LAYER <layer>` within the MAP
+   object.  You can specify as many layers as you like (in MapServer 
+   versions < 5, there was a limit that could be changed by editing
+   the map.h header file and recompileing MapServer).
+
+**NAME**
+   This is the layer identifier.  MapServer uses this name to toggle
+   the layer on and off.  It won't work in this example as we have the
+   layer STATUS set to default.  We will get back to this in later
+   examples.
+
+**DATA**
+   The name of the data (Shapefile dataset in this case). MapServer
+   supports vector data formats other than ESRI's Shapefile format
+   through the use of OGR library (part of the GDAL software package).
+   Please visit the GDAL project web site at
+   `<http://gdal.osgeo.org/>`_ and read
+   `<http://gdal.osgeo.org/ogr/>`_ to learn more about the different
+   vector formats MapServer supports.  In addition, Jeff McKenna and
+   Tyler Mitchell have written a detailed :ref:`guide to using vector
+   data for MapServer <vector>`.
+
+**TYPE**
+   What type of data is it? If it's a vector data, you can specify
+   whether it is a POLYGON, LINE (you use LINE even if your data is
+   technically a POLYLINE), or a POINT. You can also specify RASTER or
+   ANNOTATION data.  Here we want to display POLYGON.
+
+**STATUS**
+   Layers are turned on or off based on their STATUS. DEFAULT is
+   always on.  ON or OFF works when the LAYER name is passed as part
+   of the query string.
+
+CLASS Object
+************
+
+Let's look at the CLASS object parameters:
+
+.. literalinclude:: single_layer.map
+    :language: mapfile
+    :start-after: # START OF THE CLASS DEFINITION
+    :end-before: # END OF THE CLASS DEFINITION 
+    :dedent: 8
+
+**CLASS**
+   Marks the beginning of a :ref:`CLASS <class>` object within the
+   LAYER object. You can specify as many classes within a layer (in
+   MapServer  versions < 5, there was a limit that could be changed by
+   editing the map.h header file and recompiling MapServer).
+
+**NAME**
+   The descriptive identifier for this CLASS. LAYER objects can have
+   multiple classes, just like MAP objects can have multiple layers.
+   CLASS names are used by MapServer as labels for the legend so make
+   sure to use an appropriate descriptive name when naming classes.
+   We will talk about legends later in this tutorial.
+
+STYLE Object
+************
+
+And finally, let's look at the STYLE object parameters:
+
+.. literalinclude:: single_layer.map
+    :language: mapfile
+    :start-after: # START OF THE STYLE DEFINITION
+    :end-before: # END OF THE STYLE DEFINITION 
+    :dedent: 12
+
+**STYLE**
+   Marks the beginning of the :ref:`STYLE <style>` object.  You can
+   define multiple styles within a class.  This is useful when you
+   want to overlay a style over another.
+
+**COLOR**
+   This is the fill color of the polygon. In case the TYPE is LINE,
+   this is the line color. The values are in RGB format.
+
+**OUTLINECOLOR**
+   This is the outline color of the polygons. The values are in RGB
+   format.  MapServer doesn't draw polygon outlines by default, so if
+   you want to see polygon boundaries, you will want to define an
+   OUTLINECOLOR.
+
+This ends the first example in this tutorial. You are encouraged to
+change the values of the keywords in the mapfile. It will help you
+understand what these keywords do.
