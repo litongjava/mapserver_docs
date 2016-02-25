@@ -17,7 +17,7 @@ Once you have successfully configured MapServer you can update the two text boxe
 below with your own webserver address, and path to your mapfile. 
 
 The results should look the same as below, which is running from a live demo server, with
-the data displayed in an `OpenLayers3 map <http://openlayers.org/`_
+the data displayed in an `OpenLayers3 map <http://openlayers.org/>`_
 
 .. raw:: html
 	:file: single_layer.html
