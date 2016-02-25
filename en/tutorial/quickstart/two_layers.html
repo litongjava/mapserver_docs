@@ -10,14 +10,12 @@
         <form>
             <label>
                 Mapserver location:
-                <input id="ms-tutorial-location" type="text"  value="//localhost/tutorial-ol3/mapserv" />
+                <input id="ms-tutorial-location" type="text" value="http://demo.mapserver.org/cgi-bin/mapserv70" />
             </label>
-<!--
             <label>
                 Map file path:
-                <input id="mapfile-path" type="text" value="two-layers.map" />
+                <input id="mapfile-path" type="text" value="/osgeo/mapserver/tutorial-7.0/two-layers.map" />
             </label>
--->
 
             <button id="validate-btn" type="submit">Validate</button>
         </form>
@@ -32,8 +30,7 @@
                 })
             });
 
-            // Temporary disable this to use old demo.mapserver.org
-            //document.getElementById('validate-btn').addEventListener('click', updateLayers);
+            document.getElementById('validate-btn').addEventListener('click', updateLayers);
             updateLayers();
 
             function updateLayers(e) {
@@ -44,10 +41,8 @@
                 if (!msAddress.endsWith('?')) {
                     msAddress += '?';
                 }
-                // Temporary set it to empty to use old demo.mapserver.org page
-                //var mapfilePath = document.getElementById('mapfile-path').value;
-                //mapfilePath = 'MAP=' + mapfilePath;
-                var mapfilePath = '';
+                var mapfilePath = document.getElementById('mapfile-path').value;
+                mapfilePath = 'MAP=' + mapfilePath;
                 map.getLayers().getArray().forEach(function (layer) {
                     map.removeLayer(layer);
                 });
