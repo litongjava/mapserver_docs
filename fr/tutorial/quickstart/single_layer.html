@@ -142,10 +142,10 @@
 <p>This first tutorial shows how MapServer can display a dataset on a web page. The layer is
 served as a WMS this stands for Web Map Service, which is a &#8220;web-based interoperability service&#8221;
 based on specifications published by the Open Geospatial Consortium (OGC).</p>
-<p>The data used in this example is a shapefile.</p>
+<p>The data used in this example is a polygon shapefile displaying the world&#8217;s landmass.</p>
 <div class="section" id="live-example">
 <h2>1.1. Live Example<a class="headerlink" href="#live-example" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Once you have successfully configured MapServer you can update the two text boxes
+<p>Once you have successfully configured your MapServer you can update the two text boxes
 below with your own webserver address, and path to your mapfile.</p>
 <p>The results should look the same as below, which is running from a live demo server, with
 the data displayed in an <a class="reference external" href="http://openlayers.org/">OpenLayers3 map</a></p>
@@ -234,24 +234,25 @@ this:</p>
 <p>Jetons un oeil aux mots-clés (paramètres) appartenant à l&#8217;objet MAP:</p>
 <dl class="docutils">
 <dt><strong>MAP</strong></dt>
-<dd><p class="first last">Chaque mapfile commence avec un objet <a class="reference internal" href="../../mapfile/map.html#map"><span>MAP</span></a> &#8211;le mapfile entier est l&#8217;objet MAP.</p>
-</dd>
+<dd>Every mapfile must start with the <a class="reference internal" href="../../mapfile/map.html#map"><span>MAP</span></a> object &#8211; the
+entire mapfile is the MAP object.</dd>
 <dt><strong>IMAGETYPE</strong></dt>
-<dd><p class="first last">Le mot-clé IMAGETYPE es tutilisé pour définir quel format d&#8217;image le programme CGI MapServer devrait utiliser en sortie. Dans ce cas, nous utilisons un PNG avec couleurs indexées (similaire à un GIF). Cela pourrait être un GIF, si nous compilions la bibliothèque GD avec le support du GIF, du WBMP, ou du JPEG. Nous pouvons aussi spécifier d&#8217;autres options de format de sortie (PDF, SWF, GeoTIFF) fournies en supposant que nous ayons compilé avec le support de ces formats et les ayons spécifier dans l&#8217;objet OUTPUTFORMAT. L&#8217;objet OUTPUTFORMAT va au delà du besoin de ce tutoriel mais vous pouvez trouver plus d&#8217;informations sur le sujet en lisant les documentations du site web MapServer.</p>
-</dd>
+<dd>The keyword IMAGETYPE is used to define which image formats MapServer
+can generate. In this example we are using PNG images as an output. These
+are discussed further in the <a class="reference internal" href="../advanced/output_formats.html#adv-output-formats"><span>output formats tutorial</span></a></dd>
 <dt><strong>EXTENT</strong></dt>
-<dd><p class="first">Ce paramètre spécifie l&#8217;étendue de sortie de votre carte &#8211;le &#8220;rectangle encadrant&#8221; (bounding box en anglais) de notre carte initiale. Les valeurs de l&#8217;EXTENT sont données sous ce format:</p>
+<dd>This parameter specifies the output extent of our map&#8211;the bounding
+box of our initial map.  The EXTENT values are given in this
+format:</dd>
+</dl>
 <div class="highlight-python"><div class="highlight"><pre>&lt;Lower Left X&gt; &lt;Lower Left Y&gt; &lt;Upper Right X&gt; &lt;Upper Right Y&gt;
 </pre></div>
 </div>
-<p class="last">with spaces separating each value. In this example our data is in geographic
+<p>with spaces separating each value. In this example our data is in geographic
 projection so the units are in decimal degrees.</p>
-</dd>
+<dl class="docutils">
 <dt><strong>SIZE</strong></dt>
 <dd><p class="first last">C&#8217;est la taille de l&#8217;image (la carte) que MapServer va générer, en pixels. Ainsi notre carte fait 400 pixels de large par 300 pixels de haut. A nouveau, changez comme vousle sentez ces valeurs et voyez les changements sur la carte.</p>
-</dd>
-<dt><strong>SHAPEPATH</strong></dt>
-<dd><p class="first last">C&#8217;est le chemin vers nos couches de données. Vous pouvez forunir des chemins absolus (comme &#8220;/ms4w/apps/tutorial/data&#8221; ou &#8220;C:/ms4w/apps/tutorial/data&#8221;) ou des chemins relatifs par rapport à l&#8217;emplacement de votre mapfile (dans cet exemple, nous utilisons &#8221;../data&#8221;). Ce chemin n&#8217;a pas besoin d&#8217;être accessible par le web, et ne devrait pas l&#8217;être sauf si vous souhaitez que quelqu&#8217;un puisse récupérer vos données brutes. Cela n&#8217;a rien à voir directement avec le web ainsi ne pesnez pas aux URL ici&#8211;assurez vous seulement que l&#8217;utilisateur qui fait tourner le serveur web (généralement &#8220;nobody&#8221; ou &#8220;apache&#8221; dans le monde <a href="#id1"><span class="problematic" id="id2">*</span></a>nix) puisse LIRE la donnée dans le chemin SHAPEPATH.</p>
 </dd>
 <dt><strong>IMAGECOLOR</strong></dt>
 <dd><p class="first last">C&#8217;est la couleur du fond de votre carte. Les valeurs sont des valeurs RGB ainsi 255 Rouge, 255 Vert, 255 Bleu donneront un fond blanc. Poursuivez et jouez avec ces valeurs.</p>
@@ -260,14 +261,14 @@ projection so the units are in decimal degrees.</p>
 </div>
 <div class="section" id="layer-object">
 <h3>1.2.2. Objet LAYER<a class="headerlink" href="#layer-object" title="Lien permanent vers ce titre">¶</a></h3>
-<p>Maintenant regardons aux paramètres de l&#8217;objet LAYER:</p>
+<p>Now let&#8217;s look at the <a class="reference internal" href="../../mapfile/layer.html#layer"><span>LAYER</span></a> object:</p>
 <div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
     <span class="k">NAME</span> <span class="s">&#39;land&#39;</span>
     <span class="k">TYPE</span> <span class="nb">POLYGON</span>
     <span class="k">PROJECTION</span>
         <span class="s">&#39;init=epsg:4326&#39;</span>
     <span class="k">END</span>
-    <span class="k">DATA</span> <span class="s">&#39;natural_earth/110m_physical/ne_110m_land/ne_10m_land.shp&#39;</span>
+    <span class="k">DATA</span> <span class="s">&#39;natural_earth/110m_physical/ne_110m_land/ne_110m_land.shp&#39;</span>
     <span class="c"># START OF THE CLASS DEFINITION</span>
     <span class="k">CLASS</span>
         <span class="c"># START OF THE STYLE DEFINITION</span>
@@ -284,24 +285,24 @@ projection so the units are in decimal degrees.</p>
 </div>
 <dl class="docutils">
 <dt><strong>LAYER</strong></dt>
-<dd>Marks the beginning of a <a class="reference internal" href="../../mapfile/layer.html#layer"><span>LAYER</span></a> within the MAP
+<dd>Marks the beginning of a LAYER within the MAP
 object.  You can specify as many layers as you like.</dd>
 <dt><strong>NAME</strong></dt>
 <dd>This is the layer identifier and has to be unique for each layer.
 This is also the name of the WMS layer.</dd>
 <dt><strong>DATA</strong></dt>
 <dd>The name of the data (Shapefile dataset in this case). MapServer
-supports many different vector data formats which are discussed further in</dd>
+supports many different vector data formats which are discussed further in
+the <a class="reference internal" href="datasources.html#qs-datasources"><span>data sources tutorial</span></a>.</dd>
 <dt><strong>TYPE</strong></dt>
-<dd>What type of data is it? If it&#8217;s a vector data, you can specify
-whether it is a POLYGON, LINE (you use LINE even if your data is
-technically a POLYLINE), or a POINT. You can also specify RASTER or
+<dd>What type of data is it? If it&#8217;s vector data, you can specify
+whether it is a POLYGON, LINE, or POINT. You can also specify RASTER or
 ANNOTATION data. Here we want to display POLYGON.</dd>
 </dl>
 </div>
 <div class="section" id="class-object">
 <h3>1.2.3. Objet CLASS<a class="headerlink" href="#class-object" title="Lien permanent vers ce titre">¶</a></h3>
-<p>Jetons un oeil aux paramètres de l&#8217;objet CLASS:</p>
+<p>Let&#8217;s look at the <a class="reference internal" href="../../mapfile/class.html#class"><span>CLASS</span></a> object:</p>
 <div class="highlight-mapfile"><div class="highlight"><pre><span class="k">CLASS</span>
     <span class="c"># START OF THE STYLE DEFINITION</span>
     <span class="k">STYLE</span>
@@ -315,16 +316,18 @@ ANNOTATION data. Here we want to display POLYGON.</dd>
 </div>
 <dl class="docutils">
 <dt><strong>CLASS</strong></dt>
-<dd><p class="first last">Marque le début de l&#8217;objet <a class="reference internal" href="../../mapfile/class.html#class"><span>CLASS</span></a> à l&#8217;intérieur de l&#8217;objet LAYER. Vous pouvez spécifier autant de classes que vous voulez dans une couche (dans les vesrions de Mapserver &lt; 5, vous devrez recompiler Mapserver pour changer cette valeur par défaut).</p>
-</dd>
+<dd>Marks the beginning of a CLASS object within the
+LAYER object. You can specify as many classes within a layer.</dd>
 <dt><strong>NAME</strong></dt>
-<dd><p class="first last">L&#8217;identifiant descriptif pour cette CLASS. Les objets LAYER peuvent avoir plusieurs classes, comme les objets MAP peuvent avoir plusieurs couches. Le nom des CLASS est utilisé par Mapserver pour les étiquettes de la légende par MapServer. Ainsi, assurez-vous d&#8217;utiliser un nom descriptif approprié quand vous nommez les classes. Nous parlons des légendes plus loin dans ce tutoriel.</p>
-</dd>
+<dd>The descriptive identifier for this CLASS. LAYER objects can have
+multiple classes, just like MAP objects can have multiple layers.
+CLASS names are used by MapServer as labels for the legend so make
+sure to use an appropriate descriptive name when naming classes.</dd>
 </dl>
 </div>
 <div class="section" id="style-object">
 <h3>1.2.4. Objet STYLE<a class="headerlink" href="#style-object" title="Lien permanent vers ce titre">¶</a></h3>
-<p>Enfin, regardons les paramètres de l&#8217;objet STYLE:</p>
+<p>And finally, let&#8217;s look at the <a class="reference internal" href="../../mapfile/style.html#style"><span>STYLE</span></a> object:</p>
 <div class="highlight-mapfile"><div class="highlight"><pre><span class="k">STYLE</span>
     <span class="k">COLOR</span> <span class="mi">238</span> <span class="mi">236</span> <span class="mi">223</span>
     <span class="k">OUTLINECOLOR</span> <span class="mi">255</span> <span class="mi">255</span> <span class="mi">0</span>
@@ -334,16 +337,19 @@ ANNOTATION data. Here we want to display POLYGON.</dd>
 </div>
 <dl class="docutils">
 <dt><strong>STYLE</strong></dt>
-<dd><p class="first last">Marque le début de l&#8217;objet <a class="reference internal" href="../../mapfile/style.html#style"><span>STYLE</span></a>. Vous pouvez définir de multiples styles à l&#8217;intérieur d&#8217;une classe.  C&#8217;est utile quand vous voulez superposez un style par dessus un autre.</p>
-</dd>
+<dd>Marks the beginning of the STYLE object.  You can
+define multiple styles within a class.  This is useful when you
+want to overlay a style over another.</dd>
 <dt><strong>COLOR</strong></dt>
-<dd><p class="first last">C&#8217;est la couleur de remplissage du polygone. Au cas où le TYPE est LINE, c&#8217;est la couleur de la ligne. Les valeurs sont en format RGB.</p>
-</dd>
+<dd>This is the fill color of the polygon. If the LAYER TYPE is LINE,
+this is the line color. The values are in RGB format.</dd>
 <dt><strong>OUTLINECOLOR</strong></dt>
 <dd><p class="first last">C&#8217;est la couleur du contour des polygones. Les valeurs sont en format RGB. MapServer ne dessine pas les contours des polygones par défaut, ainsi si vous voulez voir les contours des polygones, vous voudrez alors définir une OUTLINECOLOR.</p>
 </dd>
 </dl>
 <p>Cela termine le premier exemple dans ce tutoriel. Vous êtes encouragés à changer les valeurs des mots-clés dans le mapfile. Cela vous aidera à comprendre ce que font ces mots-clés.</p>
+<hr class="docutils" />
+<p><a class="reference internal" href="../index.html#tutorial"><span>Back to tutorial index</span></a> | <a class="reference internal" href="two_layers.html#qs-two-layers"><span>Proceed to next tutorial</span></a></p>
 </div>
 </div>
 </div>

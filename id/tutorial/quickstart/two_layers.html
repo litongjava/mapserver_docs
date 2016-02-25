@@ -139,6 +139,99 @@
             
   <div class="section" id="a-map-with-two-layers">
 <span id="qs-two-layers"></span><h1>2. A Map with Two Layers<a class="headerlink" href="#a-map-with-two-layers" title="Link permanen untuk headline ini">¶</a></h1>
+<p>This second tutorial explains how to add a layer to your mapfile. We will use a
+polygon shapefile displaying the world landmass and a polygon shapefile
+displaying the world oceans.</p>
+<div class="section" id="live-example">
+<h2>2.1. Live Example<a class="headerlink" href="#live-example" title="Link permanen untuk headline ini">¶</a></h2>
+<p>Once you have successfully configured your MapServer you can update the two text boxes
+below with your own webserver address, and path to your mapfile.</p>
+<p>The results should look the same as below, which is running from a live demo server, with
+the data displayed in an <a class="reference external" href="http://openlayers.org/">OpenLayers3 map</a></p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mapserver OL3 viewer</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="http://openlayers.org/en/v3.14.0/css/ol.css" type="text/css">
+        <script src="http://openlayers.org/en/v3.14.0/build/ol.js"></script>
+    </head>
+    <body>
+        <form>
+            <label>
+                Mapserver location:
+                <input id="ms-tutorial-location" type="text" value="http://demo.mapserver.org/cgi-bin/mapserv70" />
+            </label>
+            <label>
+                Map file path:
+                <input id="mapfile-path" type="text" value="/osgeo/mapserver/tutorial-7.0/two_layers.map" />
+            </label>
+
+            <button id="validate-btn" type="submit">Validate</button>
+        </form>
+        <div id="map" class="map" style="margin: auto; height: 300px; width: 800px"></div>
+        <script>
+            var map = new ol.Map({
+                target: 'map',
+                view: new ol.View({
+                    center: [-4.5703125, 37.265625],
+                    zoom: 2,
+                    projection: 'EPSG:4326'
+                })
+            });
+
+            document.getElementById('validate-btn').addEventListener('click', updateLayers);
+            updateLayers();
+
+            function updateLayers(e) {
+                if (e) {
+                    e.preventDefault();
+                }
+                var msAddress = document.getElementById('ms-tutorial-location').value;
+                if (!msAddress.endsWith('?')) {
+                    msAddress += '?';
+                }
+                var mapfilePath = document.getElementById('mapfile-path').value;
+                mapfilePath = 'MAP=' + mapfilePath;
+                map.getLayers().getArray().forEach(function (layer) {
+                    map.removeLayer(layer);
+                });
+                var layer = new ol.layer.Tile({
+                    source: new ol.source.TileWMS({
+                        url: msAddress + mapfilePath,
+                        params: {LAYERS: 'land', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
+                        serverType: 'mapserver'
+                    })
+                });
+                map.addLayer(layer);
+                layer = new ol.layer.Tile({
+                    source: new ol.source.TileWMS({
+                        url: msAddress + mapfilePath,
+                        params: {LAYERS: 'ocean', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
+                        serverType: 'mapserver'
+                    })
+                });
+                map.addLayer(layer);
+            }
+        </script>
+    </body>
+</html>
+</div>
+<div class="section" id="adding-a-layer">
+<h2>2.2. Adding a layer<a class="headerlink" href="#adding-a-layer" title="Link permanen untuk headline ini">¶</a></h2>
+<p>This is what the mapfile looks like: <a class="reference internal" href="two_layers.map.html#qs-two-layers-map"><span>two_layers.map</span></a>.</p>
+<p>To add a layer, you must add a <code class="docutils literal"><span class="pre">LAYER</span></code> object to the <code class="docutils literal"><span class="pre">MAP</span></code> object. Each
+layer object must have:</p>
+<ul class="simple">
+<li>a unique <code class="docutils literal"><span class="pre">NAME</span></code> attribute.</li>
+<li>a <code class="docutils literal"><span class="pre">PROJECTION</span></code> object that tells MapServer in which projection the data is
+so it can draw it correctly.</li>
+<li>a <code class="docutils literal"><span class="pre">DATA</span></code> attribute which value is the path to the shapefile you want to use.</li>
+<li>a <code class="docutils literal"><span class="pre">CLASS</span></code> object which describes how the data must be rendered.</li>
+</ul>
+<hr class="docutils" />
+<p><a class="reference internal" href="../index.html#tutorial"><span>Back to tutorial index</span></a> | <a class="reference internal" href="single_layer.html#qs-single-layer"><span>Back to previous tutorial</span></a> | <a class="reference internal" href="#qs-two-layers"><span>Proceed to next tutorial</span></a></p>
+</div>
 </div>
 
 
@@ -156,6 +249,15 @@
 <a href="../../documentation.html" title="Documentation">Documentation</a><br>
 <a href="../../faq.html" title="FAQ">FAQ</a>
 </p>
+  <h3>Current Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. A Map with Two Layers</a><ul>
+<li><a class="reference internal" href="#live-example">2.1. Live Example</a></li>
+<li><a class="reference internal" href="#adding-a-layer">2.2. Adding a layer</a></li>
+</ul>
+</li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3>Pencarian cepat</h3>
     <form class="search" action="../../search.html" method="get">
