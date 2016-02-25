@@ -4,8 +4,74 @@
 .. _tutorial:
 
 *****************************************************************************
- MapServer Tutorial
+ MapServer Tutorials
 *****************************************************************************
+
+Tutorials for MapServer 6+
+--------------------------
+
+:Date:  2016/02
+:Author: Lars Lingner
+:Contact: lars at lingner.eu
+:Author: Seth Girvin
+:Contact: sgirvin at compass.ie
+:Author: Julien Enselme
+:Contact: julien.enselme at ioda.net
+:Author: Lars Schylberg
+:Contact: lars.schylberg at saabgroup.com
+:Status: Draft
+:Updated: 2016-02-24
+
+Quickstart - Your First MapFile
++++++++++++++++++++++++++++++++
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+
+   quickstart/single_layer
+   quickstart/two_layers
+   quickstart/browser
+   quickstart/labelling
+   quickstart/symbolizing
+   quickstart/raster
+   quickstart/datasources
+   quickstart/projections
+   quickstart/vector
+
+..
+	* 1.1 - Map with a single layer
+	* 1.2 - Map with two layers
+	* 1.3 - Viewing the map in a browser
+	* 1.4 - Labeling Data
+	* 1.5 - Symbolizing data (classes and expressions)
+	* 1.6 - Adding a raster layer
+	* 1.7 - Using different datasources (ShapeFile, PostGIS, SpatialLite, OGR)
+	* 1.8 - Projections 
+	* 1.9 - Serving vector data
+
+	**In Depth Tutorials**
+
+	* 2.1 - Adding external layers
+	* 2.2 - Using different output formats
+	* 2.3 - Making the map interactive with UTFGrid
+	* 2.4 - Configure OGC Services (WMS, WFS, GetFeatureInfo)
+	* 2.5 - Advanced symbology
+	* 2.6 - Editors for creating map styles (ScribeUI, Magnacarto, Geany, Mapmanager, )
+	* 2.7 - Styling OpenStreetMap Data with MapServer (basemaps)
+	* 2.8 - Generate high resolution renderings for print
+
+
+	**Feature Tutorials**
+
+	* Layer masking
+	* Labels with leader lines
+	* Contour lines rendering
+	* ...more features from RFCs
+
+
+Legacy Tutorials for MapServer 5.x
+----------------------------------
 
 :Author: Pericles S. Nacionales 
 :Contact: pnaciona at gmail.com
@@ -28,15 +94,15 @@ application. Section three introduces the use of HTML templates to
 provide a "query" interface. Finally, section four introduces some
 advanced user interface concepts.
 
+:ref:`Begin tutorial <tutorial_background>`
+
 .. toctree::
    :maxdepth: 2
 
-   background
-   section1
-   section2
-   section3   
-   section4  
+   legacy/background
+   legacy/section1
+   legacy/section2
+   legacy/section3   
+   legacy/section4  
 
 ----
-
-:ref:`Begin tutorial <tutorial_background>`
