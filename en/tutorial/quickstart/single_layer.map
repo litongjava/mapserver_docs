@@ -17,6 +17,7 @@ MAP
         "init=epsg:4326"
     END
 
+    # START OF THE LAYER DEFINITION 
     LAYER
         NAME 'land'
         TYPE POLYGON
@@ -25,13 +26,18 @@ MAP
             'init=epsg:4326'
         END
         DATA 'natural_earth/110m_physical/ne_110m_land/ne_10m_land'
+        # START OF THE CLASS DEFINITION
         CLASS
+            # START OF THE STYLE DEFINITION
             STYLE
                 COLOR 238 236 223
                 OUTLINECOLOR 255 255 0
                 WIDTH 1.5
             END
+            # END OF THE STYLE DEFINITION
         END
+        # END OF THE CLASS DEFINITION
     END
+    # END OF THE LAYER DEFINITION 
 END
 
