@@ -8,7 +8,7 @@ This first tutorial shows how MapServer can display a dataset on a web page. The
 served as a WMS this stands for Web Map Service, which is a "web-based interoperability service" 
 based on specifications published by the Open Geospatial Consortium (OGC). 
 
-The data used in this example is a shapefile. 
+The data used in this example is a polygon shapefile displaying the world's landmass. 
  
 Live Example
 ------------
@@ -59,15 +59,9 @@ Let's look at the keywords (parameters) within the MAP object:
    entire mapfile is the MAP object.
 
 **IMAGETYPE**
-   The keyword IMAGETYPE is used to define which image format the
-   MapServer CGI program should use for output. In this case we are
-   using indexed color PNG (similar to GIF). This could be GIF, if we
-   compiled the GD library with GIF support, WBMP, or JPEG. We can
-   also specify other output options (PDF, SWF, GeoTIFF) provided that
-   we compiled support for them and specify them with the OUTPUTFORMAT
-   object. The OUTPUTFORMAT goes beyond the scope of this tutorial but
-   you can find out more about by reading through documentations in
-   the MapServer web site.
+   The keyword IMAGETYPE is used to define which image formats MapServer
+   can generate. In this example we are using PNG images as an output. These
+   are discussed further in the :ref:`output formats tutorial <adv_output_formats>` 
 
 **EXTENT**
    This parameter specifies the output extent of our map--the bounding
@@ -85,17 +79,6 @@ Let's look at the keywords (parameters) within the MAP object:
    high.  Again, change this to your heart's content and see how it
    affects your map.
 
-**SHAPEPATH**
-   This is the path to your data layers. You can provide absolute
-   paths (i.e. "/ms4w/apps/tutorial/data" or
-   "C:/ms4w/apps/tutorial/data") or paths relative to your mapfile's
-   location (in this example, you'd use "../data"). This path doesn't
-   have to be web accessible, and probably shouldn't be unless you
-   want anyone to download your raw data. It has nothing directly to
-   do with the web so don't even think of URLs here.  Just make sure
-   that the user running the web server (usually "nobody" or "apache"
-   in the \*nix world) can READ the data in the SHAPEPATH.
-
 **IMAGECOLOR**
    This is the background color of your map. The values are RGB values
    so 255 Red, 255 Green, and 255 Blue which results in a white
@@ -104,7 +87,7 @@ Let's look at the keywords (parameters) within the MAP object:
 LAYER Object
 ************
 
-Now let's look at the LAYER object parameters:
+Now let's look at the :ref:`LAYER <layer>` object:
 
 .. literalinclude:: single_layer.map
     :language: mapfile
@@ -113,7 +96,7 @@ Now let's look at the LAYER object parameters:
     :dedent: 4
 
 **LAYER**
-   Marks the beginning of a :ref:`LAYER <layer>` within the MAP
+   Marks the beginning of a LAYER within the MAP
    object.  You can specify as many layers as you like. 
 
 **NAME**
@@ -123,17 +106,17 @@ Now let's look at the LAYER object parameters:
 **DATA**
    The name of the data (Shapefile dataset in this case). MapServer
    supports many different vector data formats which are discussed further in
+   the :ref:`data sources tutorial <qs_datasources>`. 
 
 **TYPE**
-   What type of data is it? If it's a vector data, you can specify
-   whether it is a POLYGON, LINE (you use LINE even if your data is
-   technically a POLYLINE), or a POINT. You can also specify RASTER or
+   What type of data is it? If it's vector data, you can specify
+   whether it is a POLYGON, LINE, or POINT. You can also specify RASTER or
    ANNOTATION data. Here we want to display POLYGON.
 
 CLASS Object
 ************
 
-Let's look at the CLASS object parameters:
+Let's look at the :ref:`CLASS <class>` object:
 
 .. literalinclude:: single_layer.map
     :language: mapfile
@@ -142,22 +125,19 @@ Let's look at the CLASS object parameters:
     :dedent: 8
 
 **CLASS**
-   Marks the beginning of a :ref:`CLASS <class>` object within the
-   LAYER object. You can specify as many classes within a layer (in
-   MapServer  versions < 5, there was a limit that could be changed by
-   editing the map.h header file and recompiling MapServer).
+   Marks the beginning of a CLASS object within the
+   LAYER object. You can specify as many classes within a layer. 
 
 **NAME**
    The descriptive identifier for this CLASS. LAYER objects can have
    multiple classes, just like MAP objects can have multiple layers.
    CLASS names are used by MapServer as labels for the legend so make
-   sure to use an appropriate descriptive name when naming classes.
-   We will talk about legends later in this tutorial.
+   sure to use an appropriate descriptive name when naming classes. 
 
 STYLE Object
 ************
 
-And finally, let's look at the STYLE object parameters:
+And finally, let's look at the :ref:`STYLE <style>` object:
 
 .. literalinclude:: single_layer.map
     :language: mapfile
@@ -166,13 +146,13 @@ And finally, let's look at the STYLE object parameters:
     :dedent: 12
 
 **STYLE**
-   Marks the beginning of the :ref:`STYLE <style>` object.  You can
+   Marks the beginning of the STYLE object.  You can
    define multiple styles within a class.  This is useful when you
-   want to overlay a style over another.
+   want to overlay a style over another. 
 
 **COLOR**
-   This is the fill color of the polygon. In case the TYPE is LINE,
-   this is the line color. The values are in RGB format.
+   This is the fill color of the polygon. If the LAYER TYPE is LINE,
+   this is the line color. The values are in RGB format. 
 
 **OUTLINECOLOR**
    This is the outline color of the polygons. The values are in RGB
@@ -183,3 +163,7 @@ And finally, let's look at the STYLE object parameters:
 This ends the first example in this tutorial. You are encouraged to
 change the values of the keywords in the mapfile. It will help you
 understand what these keywords do.
+
+----
+
+:ref:`Back to tutorial index <tutorial>` | :ref:`Proceed to next tutorial <qs_two_layers>`

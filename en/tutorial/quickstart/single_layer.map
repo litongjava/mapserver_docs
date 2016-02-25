@@ -3,7 +3,6 @@ MAP
     SIZE 800 800
     UNITS DD
     EXTENT -180 -90 180 90
-    SHAPEPATH "./data/"
     WEB
         IMAGEPATH "/tmp/"
         METADATA
@@ -24,7 +23,7 @@ MAP
         PROJECTION
             'init=epsg:4326'
         END
-        DATA 'natural_earth/110m_physical/ne_110m_land/ne_10m_land.shp'
+        DATA 'natural_earth/110m_physical/ne_110m_land/ne_110m_land.shp'
         # START OF THE CLASS DEFINITION
         CLASS
             # START OF THE STYLE DEFINITION
