@@ -1,7 +1,0 @@
-:orphan:
-
-.. _qs_symbolizing:
-
-=======================
-Symbolizing Data 
-=======================

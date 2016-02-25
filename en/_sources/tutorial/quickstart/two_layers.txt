@@ -1,7 +1,0 @@
-:orphan:
-
-.. _qs_two_layers:
-
-=======================
-A Map with Two Layers
-=======================

@@ -1,7 +1,0 @@
-:orphan:
-
-.. _qs_datasources:
-
-===========================
-Using Different Datasources
-===========================

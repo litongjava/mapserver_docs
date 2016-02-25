@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
@@ -32,7 +32,7 @@
     <link rel="prev" title="ESRI Personal Geodatabase (MDB)" href="pgeo.html" />
    
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
   <body role="document">
@@ -101,6 +101,24 @@
 </table>
 
 
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gml.html" title="GML"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pgeo.html" title="ESRI Personal Geodatabase (MDB)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >MapServer 7.0.0 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Data Input</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Vector Data</a> &raquo;</li> 
+      </ul>
+    </div>
   
 
     <div class="document">
@@ -115,7 +133,7 @@ that introduced this format.  ArcView was the first product to use shapefiles.</
 <div class="section" id="file-listing">
 <h2>File listing<a class="headerlink" href="#file-listing" title="Permalink to this headline">¶</a></h2>
 <p>Shapefiles are made up of a minimum of three similarly named files, with different suffixes:</p>
-<div class="highlight-python3"><div class="highlight"><pre><span></span><span class="n">Countries_area</span><span class="o">.</span><span class="n">dbf</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Countries_area</span><span class="o">.</span><span class="n">dbf</span>
 <span class="n">Countries_area</span><span class="o">.</span><span class="n">shp</span>
 <span class="n">Countries_area</span><span class="o">.</span><span class="n">shx</span>
 </pre></div>
@@ -138,7 +156,7 @@ made.</p>
 same prefix as the shapefile.</li>
 </ul>
 <p>Using ogrinfo on a directory with multiple shapefiles:</p>
-<div class="highlight-python3"><div class="highlight"><pre><span></span>&gt; ogrinfo /data/shapefiles/
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt; ogrinfo /data/shapefiles/
 INFO: Open of `/data/shapefiles/&#39;
 using driver `ESRI Shapefile&#39; successful.
 1: wpg_h2o (Line String)
@@ -148,7 +166,7 @@ using driver `ESRI Shapefile&#39; successful.
 </pre></div>
 </div>
 <p>Using ogrinfo on a single shapefile:</p>
-<div class="highlight-python3"><div class="highlight"><pre><span></span>&gt; ogrinfo /data/shapefiles/Countries_area.shp
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt; ogrinfo /data/shapefiles/Countries_area.shp
 Had to open data source read-only.
 INFO: Open of `Countries_area.shp&#39;
 using driver `ESRI Shapefile&#39; successful.
@@ -156,7 +174,7 @@ using driver `ESRI Shapefile&#39; successful.
 </pre></div>
 </div>
 <p>Using ogrinfo to examine the structure of the file/layer:</p>
-<div class="highlight-python3"><div class="highlight"><pre><span></span>&gt; ogrinfo -summary /data/shapefiles/Countries_area.shp Countries_area
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt; ogrinfo -summary /data/shapefiles/Countries_area.shp Countries_area
 Had to open data source read-only.
 INFO: Open of `Countries_area.shp&#39;
 using driver `ESRI Shapefile&#39; successful.
@@ -177,16 +195,16 @@ NA2DESC: String (45.0)
 </pre></div>
 </div>
 <p>Map File Example:</p>
-<div class="highlight-python3"><div class="highlight"><pre><span></span><span class="n">LAYER</span>
-        <span class="n">NAME</span> <span class="n">my_shapefile</span>
-        <span class="n">TYPE</span> <span class="n">POLYGON</span>
-        <span class="n">DATA</span> <span class="n">countries_area</span>
-        <span class="n">STATUS</span> <span class="n">OFF</span>
-        <span class="n">CLASS</span>
-        <span class="n">NAME</span> <span class="s2">&quot;Countries&quot;</span>
-        <span class="n">OUTLINECOLOR</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
-        <span class="n">END</span>
-<span class="n">END</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>LAYER
+        NAME my_shapefile
+        TYPE POLYGON
+        DATA countries_area
+        STATUS OFF
+        CLASS
+        NAME &quot;Countries&quot;
+        OUTLINECOLOR 0 0 0
+        END
+END
 </pre></div>
 </div>
 </div>
@@ -238,8 +256,8 @@ NA2DESC: String (45.0)
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4a1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
       
     </div>
 

@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
@@ -32,7 +32,7 @@
     <link rel="prev" title="MS RFC 114: Faster retrieval of shape count" href="ms-rfc-114.html" />
    
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
   <body role="document">
@@ -101,6 +101,23 @@
 </table>
 
 
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../git.html" title="GitHub"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ms-rfc-114.html" title="MS RFC 114: Faster retrieval of shape count"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Development</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Request for Comments</a> &raquo;</li> 
+      </ul>
+    </div>
   
 
     <div class="document">
@@ -118,19 +135,19 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Lars Lingner</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body"><a class="reference external" href="mailto:lars&#37;&#52;&#48;lingner&#46;eu">lars<span>&#64;</span>lingner<span>&#46;</span>eu</a></td>
+<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body">lars at lingner.eu</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Seth Girvin</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body"><a class="reference external" href="mailto:sgirvin&#37;&#52;&#48;compass&#46;ie">sgirvin<span>&#64;</span>compass<span>&#46;</span>ie</a></td>
+<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body">sgirvin at compass.ie</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Julien Enselme</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body">julien.enselme at ioda.net</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Lars Schylberg</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Contact:</th><td class="field-body">lars.schylberg at saabgroup.com</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Status:</th><td class="field-body">Draft</td>
 </tr>
@@ -148,11 +165,12 @@ This result in a very bad first impression for new users testing the software.</
 <h2>2. Proposed plan<a class="headerlink" href="#proposed-plan" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>review current docs</li>
-<li>build example data package</li>
-<li>create updated version for OSGeoLive DVD</li>
+<li>build example data package with new data</li>
 <li>create new tutorial structure</li>
+<li>create a HTML Template which can be used for demo server</li>
+<li>create updated version for OSGeo-Live</li>
 </ul>
-<p>Work and discussion is done in fork of docs repository [1]. We&#8217;ll update from upstream repository when necessary.</p>
+<p>Work and discussion is done in fork of docs repository [1]. We&#8217;ll update from upstream repository when upstream changes are committed. When we have a first stable version we will create a pull request to the upstream repository.</p>
 </div>
 <div class="section" id="backwards-compatibility">
 <h2>3. Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permalink to this headline">¶</a></h2>
@@ -162,24 +180,24 @@ archive section in the documentation.</p>
 </div>
 <div class="section" id="implementation-details">
 <h2>4. Implementation Details<a class="headerlink" href="#implementation-details" title="Permalink to this headline">¶</a></h2>
-<p>Data Package</p>
+<p>Content of the data package</p>
 <ul class="simple">
 <li>vector data (OSM, NaturalEarth)</li>
 <li>raster data (SRTM, satellite imagery, DEM)</li>
 </ul>
 <p>Review current tutorial docs</p>
 <ul class="simple">
-<li>remove outdated information and external links</li>
+<li>remove or update outdated information and external links</li>
+<li>reuse current text where appropriate</li>
 </ul>
-<p>The current situation is that tutorials are duplicated in different places, with some links updated in one place
-and not another.</p>
-<p>For example the main tutorial section is on the documentation site at <a class="reference external" href="http://demo.mapserver.org/tutorial/sections.html">http://demo.mapserver.org/tutorial/sections.html</a>
+<p>The current situation is that tutorials are duplicated in different places, with some links updated in one place and not another. For example the main tutorial section is on the documentation site at <a class="reference external" href="http://demo.mapserver.org/tutorial/sections.html">http://demo.mapserver.org/tutorial/sections.html</a>
 However sections 3 and 4 of the tutorials are simply links to <a class="reference external" href="http://demo.mapserver.org/tutorial/section3.html">http://demo.mapserver.org/tutorial/section3.html</a>
 The <a class="reference external" href="http://demo.mapserver.org">http://demo.mapserver.org</a> site also duplicates sections 1 and 2.</p>
-<p>In addition the OSGeo Live CD has a tutorial section which is more recent, and could perhaps be used as the basis of the
-tutorials on the MapServer documentation site: <a class="reference external" href="http://live.osgeo.org/en/quickstart/mapserver_quickstart.html">http://live.osgeo.org/en/quickstart/mapserver_quickstart.html</a></p>
-<p>Current tutorial titles, to review and decide if they are still relevant with
-modern MapServer usage.</p>
+<p>In addition the OSGeo-Live has a tutorial section which is more recent, and could perhaps be used as the basis of the tutorials on the MapServer documentation site: <a class="reference external" href="http://live.osgeo.org/en/quickstart/mapserver_quickstart.html">http://live.osgeo.org/en/quickstart/mapserver_quickstart.html</a></p>
+<p>A web page with OpenLayers included will be provided to view the maps created in this tutorial. This can also be used for the MapServer online demo.</p>
+<p>Current tutorial titles, to review and decide if they are still relevant with modern MapServer usage.</p>
+<div class="section" id="current-structure">
+<h3>Current structure<a class="headerlink" href="#current-structure" title="Permalink to this headline">¶</a></h3>
 <p><strong>Section 1: Static Maps and the MapFile</strong></p>
 <ul class="simple">
 <li>1.1 - Map with a single layer</li>
@@ -218,11 +236,44 @@ modern MapServer usage.</p>
 <li>4.2 - Using JavaScript t0 Enhance the Application</li>
 <li>4.3 - Links to Other Examples</li>
 </ul>
-<p>...</p>
+</div>
+<div class="section" id="proposed-structure">
+<h3>Proposed structure<a class="headerlink" href="#proposed-structure" title="Permalink to this headline">¶</a></h3>
+<p><strong>Quickstart: Your first MapFile</strong></p>
+<ul class="simple">
+<li>1.1 - Map with a single layer</li>
+<li>1.2 - Map with two layers</li>
+<li>1.3 - Viewing the map in a browser</li>
+<li>1.4 - Labeling Data</li>
+<li>1.5 - Symbolizing data (classes and expressions)</li>
+<li>1.6 - Adding a raster layer</li>
+<li>1.7 - Using different datasources (ShapeFile, PostGIS, SpatialLite, OGR)</li>
+<li>1.8 - Projections</li>
+<li>1.9 - Serving vector data</li>
+</ul>
+<p><strong>In depths tutorial</strong></p>
+<ul class="simple">
+<li>2.1 - Adding external layers</li>
+<li>2.2 - Using different output formats</li>
+<li>2.3 - Making the map interactive with UTFGrid</li>
+<li>2.4 - Configure OGC Services (WMS, WFS, GetFeatureInfo)</li>
+<li>2.5 - Advanced symbology</li>
+<li>2.6 - Editors for creating map styles (ScribeUI, Magnacarto, Geany, Mapmanager, )</li>
+<li>2.7 - Styling OpenStreetMap Data with MapServer (basemaps)</li>
+<li>2.8 - Generate high resolution renderings for print</li>
+</ul>
+<p><strong>Feature Tutorials</strong></p>
+<ul class="simple">
+<li>Layer masking</li>
+<li>Labels with leader lines</li>
+<li>Contour lines rendering</li>
+<li>...more features from RFCs</li>
+</ul>
+</div>
 </div>
 <div class="section" id="documentation">
 <h2>5. Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
-<p>...</p>
+<p>n/a</p>
 </div>
 <div class="section" id="voting-history">
 <h2>6. Voting History<a class="headerlink" href="#voting-history" title="Permalink to this headline">¶</a></h2>
@@ -254,7 +305,11 @@ modern MapServer usage.</p>
 <li><a class="reference internal" href="#motivation">1. Motivation</a></li>
 <li><a class="reference internal" href="#proposed-plan">2. Proposed plan</a></li>
 <li><a class="reference internal" href="#backwards-compatibility">3. Backwards Compatibility</a></li>
-<li><a class="reference internal" href="#implementation-details">4. Implementation Details</a></li>
+<li><a class="reference internal" href="#implementation-details">4. Implementation Details</a><ul>
+<li><a class="reference internal" href="#current-structure">Current structure</a></li>
+<li><a class="reference internal" href="#proposed-structure">Proposed structure</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#documentation">5. Documentation</a></li>
 <li><a class="reference internal" href="#voting-history">6. Voting History</a></li>
 <li><a class="reference internal" href="#references">7. References</a></li>
@@ -283,8 +338,8 @@ modern MapServer usage.</p>
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4a1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
       
     </div>
 
