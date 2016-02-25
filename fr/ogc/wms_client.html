@@ -130,23 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="wms_time.html" title="WMS Time"
-             accesskey="N">suivant</a> |</li>
-        <li class="right" >
-          <a href="inspire.html" title="Service de vue INSPIRE"
-             accesskey="P">précédent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation de MapServer 7.0.0</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Gestion et configuration des standards OGC</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -217,7 +200,7 @@
 <h3>Vérifiez votre exécutable MapServer<a class="headerlink" href="#check-your-mapserver-executable" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Pour vérifier que votre exécutable mapserv inclut le support WMS, utilisez l&#8217;option de ligne de commande &#8220;-v&#8221; et confirmez la présence de &#8220;SUPPORTS=WMS_CLIENT&#8221;.</p>
 <p>Exemple 1. Information de version de Mapserv sous Unix:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>$ ./mapserv -v
+<div class="highlight-python"><div class="highlight"><pre>$ ./mapserv -v
 MapServer version 6.3-dev OUTPUT=GIF OUTPUT=PNG OUTPUT=JPEG OUTPUT=KML
 SUPPORTS=PROJ SUPPORTS=GD SUPPORTS=AGG SUPPORTS=FREETYPE SUPPORTS=CAIRO
 SUPPORTS=ICONV SUPPORTS=FRIBIDI SUPPORTS=WMS_SERVER SUPPORTS=WMS_CLIENT
@@ -227,7 +210,7 @@ INPUT=GDAL INPUT=SHAPEFILE
 </pre></div>
 </div>
 <p>Exemple 2. Information de version de Mapserv sous Windows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>C:\ms4w\apache\cgi-bin&gt; mapserv -v
+<div class="highlight-python"><div class="highlight"><pre>C:\ms4w\apache\cgi-bin&gt; mapserv -v
 MapServer version 6.3-dev OUTPUT=GIF OUTPUT=PNG OUTPUT=JPEG OUTPUT=KML
 SUPPORTS=PROJ SUPPORTS=GD SUPPORTS=AGG SUPPORTS=FREETYPE SUPPORTS=CAIRO
 SUPPORTS=ICONV SUPPORTS=FRIBIDI SUPPORTS=WMS_SERVER SUPPORTS=WMS_CLIENT
@@ -266,7 +249,7 @@ INPUT=GDAL INPUT=SHAPEFILE
 <h3>Stocker les fichiers temporaires<a class="headerlink" href="#storing-temporary-files" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Avant la version 6.0, et en version 6.0 quand la métadonnée wms_cache_to_disk est activée,vous devez définir la valeur de IMAGEPATH dans l&#8217;objet WEB de votre mapfile pour qu&#8217;il pointe vers un répertoire valide et supportant un fonctionnement en écriture. MapServer utilisera ce répertoire pour stocker les fichiers temporaires téléchargés depuis les serveurs distants. Les The fichiers temporaires sont automatiquement supprimés par MapServer et ainsi vous ne les remarquerez pas.</p>
 <p>Exemple 3. Définir le paramètre IMAGEPATH dans un Mapfile</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">MAP</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">MAP</span>
   <span class="p">...</span>
   <span class="k">WEB</span>
     <span class="k">IMAGEPATH</span> <span class="s">&quot;/tmp/ms_tmp/&quot;</span>
@@ -277,7 +260,7 @@ INPUT=GDAL INPUT=SHAPEFILE
 </pre></div>
 </div>
 <p>Si vous souhaitez garder ce fichier temporaire pour effectuer du debuggage, vous devez ajouter la déclaration suivante à l&#8217;objet LAYER de votre mapfile:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
   <span class="p">....</span>
   <span class="k">DEBUG</span> <span class="nb">ON</span>
   <span class="p">...</span>
@@ -288,7 +271,7 @@ INPUT=GDAL INPUT=SHAPEFILE
 <div class="section" id="adding-a-wms-layer">
 <h3>Ajout d&#8217;une couche WMS<a class="headerlink" href="#adding-a-wms-layer" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Les couches WMS sont accédés via un type de connexion WMS dans le <a class="reference internal" href="../mapfile/index.html#mapfile"><span>Mapfile</span></a>. Voici un exemple de couche utilisant ce type de connexion:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
   <span class="k">NAME</span> <span class="s">&quot;country_bounds&quot;</span>
   <span class="k">TYPE</span> <span class="nb">RASTER</span>
   <span class="k">STATUS</span> <span class="nb">ON</span>
@@ -339,7 +322,7 @@ INPUT=GDAL INPUT=SHAPEFILE
 <li><p class="first"><strong>objet PROJECTION</strong> - il est optionnel. MapServer en créera un en interne seulement si requis.  En inclure un peut permettre à MapServer d&#8217;éviter la recherche de définition dans les fichiers PROJ.4.</p>
 </li>
 <li><p class="first"><strong>métadonnée &#8220;wms_auth_username&#8221;</strong> - chaîne d&#8217;autorisation avec style msEncrypt.  Les chaînes vides sont aussi acceptées.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="s">&quot;wms_auth_username&quot;</span> <span class="s">&quot;foo&quot;</span>
   <span class="s">&quot;wms_auth_password&quot;</span> <span class="s">&quot;{FF88CFDAAE1A5E33}&quot;</span>
 <span class="k">END</span>
@@ -358,14 +341,14 @@ INPUT=GDAL INPUT=SHAPEFILE
 </li>
 </ul>
 </div></blockquote>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="s">&quot;wms_auth_type&quot;</span> <span class="s">&quot;ntlm&quot;</span>
 <span class="k">END</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first"><strong>métadonnée &#8220;wms_connectiontimeout&#8221;</strong> - le temps maximum à attendre pour charger une couche WMS distante, définit en secondes (par défaut est à 30 secondes). Cette métadonnée peut être ajoutée au niveau du bloc LAYER afin qu&#8217;elle n&#8217;affecte que cette couche, ou peut être ajoutée au niveau du bloc MAP (dans l&#8217;objet WEB) afin qu&#8217;elles affectent toutes les couches. Notez que wms_connectiontimeout au niveau de LAYER a priorité sur celle au niveau MAP.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="p">...</span>
   <span class="s">&quot;wms_connectiontimeout&quot;</span> <span class="s">&quot;60&quot;</span>
   <span class="p">...</span>
@@ -375,7 +358,7 @@ INPUT=GDAL INPUT=SHAPEFILE
 </li>
 <li><p class="first"><strong>&#8220;wms_exceptions_format&#8221; metadata</strong>
 - set the format for exceptions (as of MapServer 4.6). MapServer defaults to <em>application/vnd.ogc.se_inimage</em> (the exception will be in a picture format).  You can check the GetCapabilities of the server to see what formats are available for exceptions.  The <em>application/vnd.ogc.se_inimage</em> exception format is actually a non-required exception format in the WMS 1.1.1 spec, so there are servers out there which don&#8217;t support this format. In that case you would use:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
   <span class="p">...</span>
   <span class="k">METADATA</span>
     <span class="s">&quot;wms_exceptions_format&quot;</span> <span class="s">&quot;application/vnd.ogc.se_xml&quot;</span>
@@ -385,7 +368,7 @@ INPUT=GDAL INPUT=SHAPEFILE
 </pre></div>
 </div>
 <p>qui devrait retourner cette exception xml dans le MS_ERRORFILE:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>Tue Jan 17 18:05:13 2006 - msDrawWMSLayerLow(): WMS server error.
+<div class="highlight-python"><div class="highlight"><pre>Tue Jan 17 18:05:13 2006 - msDrawWMSLayerLow(): WMS server error.
 WMS GetMap request got XML exception for layer &#39;prov_bound&#39;:
 &lt;?xml version=&#39;1.0&#39; encoding=&quot;ISO-8859-1&quot; standalone=&quot;no&quot; ?&gt;
 &lt;!DOCTYPE ServiceExceptionReport SYSTEM
@@ -404,7 +387,7 @@ given in the LAYERS parameter.
 <li><p class="first"><strong>métadonnée &#8220;wms_formatlist&#8221;</strong> - liste séparée par des virgules des formats d&#8217;image supportés par le serveur WMS distant. Notez que wms_formatlist est utilisé seulement si wms_format n&#8217;est pas défini. Si à la fois wms_format et wms_formatlist sont fournis alors wms_format prend la précédence.</p>
 </li>
 <li><p class="first"><strong>métadonnée &#8220;wms_latlonboundingbox&#8221;</strong> - le rectangle englobant de cette couche en coordonnées géographiques dans le format &#8220;lon_min lat_min lon_max lat_max&#8221;. S&#8217;il est défini alors MapServer interrogera seulement la couche quand la vue de la carte se superpose avec ce rectangle englobant. Vous obtenez normalement ceci depuis la sortie &#8220;capabilities&#8221; du serveur.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="s">&quot;wms_latlonboundingbox&quot;</span> <span class="s">&quot;-124 48 -123 49&quot;</span>
 <span class="k">END</span>
 </pre></div>
@@ -422,35 +405,35 @@ given in the LAYERS parameter.
 </li>
 </ul>
 </div></blockquote>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="s">&quot;wms_proxy_auth_type&quot;</span> <span class="s">&quot;ntlm&quot;</span>
 <span class="k">END</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first"><strong>métadonnée &#8220;wms_proxy_host&#8221;</strong> - le nom de domaine du proxy à utiliser, en format &#8220;décimale à point&#8221;, avec un composant de port optionnel (par exemple &#8216;192.168.2.10:8080&#8217;).</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="s">&quot;wms_proxy_host&quot;</span> <span class="s">&quot;192.168.2.10&quot;</span>
 <span class="k">END</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first"><strong>métadonnée &#8220;wms_proxy_port&#8221;</strong> - le port à utiliser pour une connexion proxy.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="s">&quot;wms_proxy_port&quot;</span> <span class="s">&quot;8080&quot;</span>
 <span class="k">END</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first"><strong>métadonnée &#8220;wms_proxy_type&#8221;</strong> - le type de connexion proxy.  Les valeurs valides sont &#8216;http&#8217; et &#8216;socks5&#8217;, qui sont sensibles à la casse.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="s">&quot;wms_proxy_type&quot;</span> <span class="s">&quot;http&quot;</span>
 <span class="k">END</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first"><strong>métadonnée &#8220;wms_proxy_username&#8221;</strong> - chaîne avec style msEncrypt pour une connexion proxy.  Les chaînes vides sont aussi acceptées.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="s">&quot;wms_proxy_username&quot;</span> <span class="s">&quot;foo&quot;</span>
   <span class="s">&quot;wms_proxy_password&quot;</span> <span class="s">&quot;{FF88CFDAAE1A5E33}&quot;</span>
 <span class="k">END</span>
@@ -464,7 +447,7 @@ given in the LAYERS parameter.
 <li><p class="first"><strong>métadonnée &#8220;wms_style&#8221;</strong> - nom du style à utiliser pourle paramètre de STYLES dans les requêtes GetMap pour cette couche.</p>
 </li>
 <li><p class="first"><strong>métadonnée &#8220;wms_style_&lt;stylename&gt;_sld&#8221; metadata</strong> URL d&#8217;un SLD à utiliser dans les requêtes GetMap. Remplace &lt;stylename&gt; dans le nom de métadonnée avec le nom de style auxquel le SLD s&#8217;applique.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">METADATA</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">METADATA</span>
   <span class="p">...</span>
   <span class="s">&quot;wms_style&quot;</span>              <span class="s">&quot;mystyle&quot;</span>
   <span class="s">&quot;wms_style_mystyle_sld&quot;</span>  <span class="s">&quot;http://my.host.com/mysld.xml&quot;</span>
@@ -496,7 +479,7 @@ given in the LAYERS parameter.
 <h4>Ancien format de paramètre de CONNECTION depuis les versions 3.5 et 3.6 (déprécié)<a class="headerlink" href="#old-connection-parameter-format-from-version-3-5-and-3-6-deprecated" title="Lien permanent vers ce titre">¶</a></h4>
 <p>Dans les versions 3.5 et 3.6 de MapServer, le paramètre de CONNECTION devait inclure au minimum les paramètres WMS VERSION, LAYERS, FORMAT et TRANSPARENT. Ce mode de fonctionnement est encore supportémais est déprécié et vous êtes encouragés à utiliser les éléments métadonnées pour ces paramètres comme documenté dans la section précédente ci-dessus.</p>
 <p>Voici un exemple de definition de couche utilisant le format de paramètre de CONNECTION déprécié:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
  <span class="k">NAME</span> <span class="s">&quot;bathymetry_elevation&quot;</span>
  <span class="k">TYPE</span> <span class="nb">RASTER</span>
  <span class="k">STATUS</span> <span class="nb">ON</span>
@@ -585,8 +568,8 @@ given in the LAYERS parameter.
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

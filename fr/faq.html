@@ -130,22 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="copyright.html" title="License"
-             accesskey="N">suivant</a> |</li>
-        <li class="right" >
-          <a href="errors.html" title="Erreurs"
-             accesskey="P">précédent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="documentation.html" accesskey="U">Documentation de MapServer 7.0.0</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -293,14 +277,14 @@
 <div class="section" id="how-do-i-set-line-width-in-my-maps">
 <h2>Comment je définis une largeur de ligne dans ma carte ?<a class="headerlink" href="#how-do-i-set-line-width-in-my-maps" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Dans la version courante de Mapserver, la largeur de ligne est définie en utilisant le paramètre WIDTH de l&#8217;objet STYLE. Pour une couche  LINE, les lignes peuvent être rouges et avec 3 pixels de large en utilisant le style suivant dans une CLASS.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">STYLE</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">STYLE</span>
   <span class="k">COLOR</span> <span class="mi">255</span> <span class="mi">0</span> <span class="mi">0</span>
   <span class="k">WIDTH</span> <span class="mi">3</span>
 <span class="k">END</span>
 </pre></div>
 </div>
 <p>Dans les versions antérieures de Mapserver, vous pouviez définir le symbole pour une LAYER à &#8216;circle&#8217; et ensuite ensuite vous pouviez définir la taille SIZE du symbole à la largeur souhaitée. Un symbole &#8216;circle&#8217; peut être défini comme</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">SYMBOL</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">SYMBOL</span>
   <span class="k">NAME</span> <span class="s">&#39;circle&#39;</span>
   <span class="k">TYPE</span> <span class="nb">ELLIPSE</span>
   <span class="k">FILLED</span> <span class="nb">TRUE</span>
@@ -372,7 +356,7 @@
 <div class="section" id="why-doesn-t-pil-python-imaging-library-open-my-pngs">
 <h2>Pourquoi la bibliothèque PIL (Python Imaging Library) n&#8217;ouvre pas mes PNG?<a class="headerlink" href="#why-doesn-t-pil-python-imaging-library-open-my-pngs" title="Lien permanent vers ce titre">¶</a></h2>
 <p><a class="reference external" href="http://www.pythonware.com/products/pil/">PIL</a> ne gère pas les PNG entrelacés pour l&#8217;instant (aucune planification pour cela le sera n&#8217;a été définie). Pour lire des PNG dans PIL, ceux-ci ne doivent pas être entrelacés. Modifier l&#8217;objet OUTPUTFORMAT avec un paramètre FORMATOPTION comme ceci :</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">OUTPUTFORMAT</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">OUTPUTFORMAT</span>
   <span class="k">NAME</span> <span class="nb">png</span>
   <span class="k">DRIVER</span> <span class="s">&quot;GD/PNG&quot;</span>
   <span class="k">MIMETYPE</span> <span class="s">&quot;image/png&quot;</span>
@@ -395,7 +379,7 @@
 <p>Vous pouvez utiliser un objet géométrique avec l&#8217;objet <a class="reference internal" href="mapfile/feature.html#feature"><span>FEATURE</span></a>, pour créer un point sur votre carte. Utilisez le paramètre TEXT de l&#8217;objet FEATURE pour le texte du copyright, et un objet <a class="reference internal" href="mapfile/label.html#label"><span>LABEL</span></a> pour le styler.</p>
 <div class="section" id="example-layer">
 <h3>Couche exemple<a class="headerlink" href="#example-layer" title="Lien permanent vers ce titre">¶</a></h3>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
   <span class="k">NAME</span> <span class="s">&quot;copyright&quot;</span>
   <span class="k">STATUS</span> <span class="nb">on</span>
   <span class="k">TYPE</span> <span class="nb">point</span>
@@ -441,7 +425,7 @@ width defines the width of the symbol <em>inside</em> the filled polygon. In thi
 event, the outline width is disregarded, and it is always set to 1. To achieve
 the effect of <em>both</em> a fill and an outline width, you need to use two styles
 in your class.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">STYLE</span> <span class="c"># solid fill</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">STYLE</span> <span class="c"># solid fill</span>
   <span class="k">COLOR</span> <span class="mi">255</span> <span class="mi">0</span> <span class="mi">0</span>
 <span class="k">END</span>
 <span class="k">STYLE</span> <span class="c"># thick outline</span>
@@ -464,7 +448,7 @@ in your class.</p>
 </li>
 </ul>
 <p>L&#8217;exemple de mapfile suivant active les bordures avec anticrênelages sur county:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="p">...</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="p">...</span>
 <span class="k">IMAGETYPE</span> <span class="s">&quot;png24&quot;</span>
 <span class="p">...</span>
 <span class="k">OUTPUTFORMAT</span>
@@ -515,7 +499,7 @@ in your class.</p>
 <p>Faire une requête vers certains connecteurs WMS ArcIMS entrainent une carte avec des données mal alignées (le ratio des pixels semble incorrect).</p>
 <p>Certains sites ArcIMS ne sont pas configurés par défaut pour étirer l&#8217;image renvoyée pour correspondre à l&#8217;enveloppe demandée. Cela entraine une carte avec des couches de données qui se superposent correctement au centre de la couche, mais pas vers les bords. Cela peut être corrigé en ajoutant &#8220;<em>reaspect=false</em>&#8221; à la requête (dans la chaîne de connexion).</p>
 <p>Par exemple si votre mapfile est dans une projection différente de EPSG:4326, la couche suivante ne s&#8217;affichera pas correctement :</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
     <span class="k">NAME</span> <span class="s">&quot;hillshade&quot;</span>
     <span class="k">TYPE</span> <span class="nb">RASTER</span>
     <span class="k">STATUS</span> <span class="nb">OFF</span>
@@ -536,7 +520,7 @@ in your class.</p>
 </pre></div>
 </div>
 <p>En ajoutant &#8220;reaspect=false&#8221; à la chaîne de connexion cela résoud le problème :</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
     <span class="k">NAME</span> <span class="s">&quot;hillshade&quot;</span>
     <span class="k">TYPE</span> <span class="nb">RASTER</span>
     <span class="k">STATUS</span> <span class="nb">OFF</span>
@@ -587,7 +571,7 @@ in your class.</p>
 <p class="last">Ces paramètres étaient toujours nécessaire pour toutes les versions de la spécification WMS mais MapServer ne les demandaient pas avant dans les requêtes clientes (même si la plupart des clients WMS OGC les délivreront de toutes façon pour être compatibles avec les spec WMS).</p>
 </div>
 <p>La requête ci-dessous constitue maintenant une requête GetMap valide :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>http://wms.example.com/wms?service=WMS&amp;version=1.1.1&amp;request=GetMap&amp;layers=foo&amp;srs=EPSG:4326&amp;bbox=-180,-90,180,90&amp;format=image/png&amp;width=400&amp;height=300&amp;styles=default
+<div class="highlight-python"><div class="highlight"><pre>http://wms.example.com/wms?service=WMS&amp;version=1.1.1&amp;request=GetMap&amp;layers=foo&amp;srs=EPSG:4326&amp;bbox=-180,-90,180,90&amp;format=image/png&amp;width=400&amp;height=300&amp;styles=default
 </pre></div>
 </div>
 <p>Ce qui est compatible avec la spécification WMS.</p>
@@ -602,7 +586,7 @@ in your class.</p>
 <h2>En utilisant MapServer 6.0, pourquoi mes couches ne s&#8217;affichent plus dans les réponses de requêtes GetCapabilities ou ne sont plus trouvées du tout?<a class="headerlink" href="#using-mapserver-6-0-why-don-t-my-layers-show-up-in-getcapabilities-responses-or-are-not-found-anymore" title="Lien permanent vers ce titre">¶</a></h2>
 <p>MapServer 6.0 introduit l&#8217;option de cacher des couches dans les appels aux Web Service de l&#8217;OGC.  Les Web Services OGC peuvent fournir des accès très puissants pour vps données géospatiales. Il a été décidé de désactiver l&#8217;accès au niveau des couches par défaut.  Voir la <a class="reference internal" href="development/rfc/ms-rfc-67.html#rfc67"><span>MS RFC 67:  Enable/Disable Layers in OGC Web Services</span></a> qui fournit l&#8217;explication complète des changements et de leurs implications.</p>
 <p>Pour permettre de revenir au comportement avant la version 6.0, vous pouvez ajouter ce qui suit dans la section METADATA de l&#8217;objet :ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>WEB`de votre mapfile:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="s2">&quot;ows_enable_request&quot;</span> <span class="s2">&quot;*&quot;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;ows_enable_request&quot;</span> <span class="s">&quot;*&quot;</span>
 </pre></div>
 </div>
 <p>Cela permettra l&#8217;accès à toutes les couches pour tous les requêtes de Web Service OGC.</p>
@@ -618,17 +602,17 @@ in your class.</p>
 <div class="section" id="how-can-i-reproject-my-data-using-ogr2ogr">
 <h2>Comment je peux reprojeter mes données en utilisant ogr2ogr<a class="headerlink" href="#how-can-i-reproject-my-data-using-ogr2ogr" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Avec ogr2ogr bien sûr! ogr2ogr est un utilitaire très puissant qui va transformer les projections de vos shapefiles quand vous lui passez les paramètres appropriés. Dans mon cas, j&#8217;utilisais Mapserver pour servir les données en &#8220;RI (Rhode Island) State Plane Feet&#8221;. Por faire ceci, les données devaient d&#8217;abord être converties en mètres. Voici les commandes que j&#8217;ai utilisé:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>ogr2ogr -t_srs EPSG:32130 output.shp input.shp
+<div class="highlight-python"><div class="highlight"><pre>ogr2ogr -t_srs EPSG:32130 output.shp input.shp
 </pre></div>
 </div>
 <p>Comme mes données avaient déjà une projection définie, je n&#8217;ai pas eu besoin de définir explicitement la projection de la source. Cette commande utilise la définition EPSG pour le &#8220;NAD83 Rhode Island (32130)&#8221; et fait la conversion des pieds vers les mètres.</p>
 <p>Maintenant disons que ma donnée n&#8217;était pas déjà projetée? Voici comment nous pouvons gérer ce cas avec:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>ogr2ogr -s_srs &quot;+proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.999994 +x_0=100000 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3408 +no_defs&quot; -t_srs EPSG:32130 output.shp input.shp
+<div class="highlight-python"><div class="highlight"><pre>ogr2ogr -s_srs &quot;+proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.999994 +x_0=100000 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3408 +no_defs&quot; -t_srs EPSG:32130 output.shp input.shp
 </pre></div>
 </div>
 <p>Laissez-loi examiner ce qu&#8217;il se passe ici:</p>
 <p>Le paramètre -s_srs définit explicitement une projection pour cette donnée. Les paramètres utilisés ici ont été pris de la définition EPSG (dans ce cas, 32130) dans le fichier epsg (voir la <cite>FAQ sur les projections &lt;epsg_codes&gt;</cite> pour plus de détails sur la localisation des définitions EPSG). L&#8217;entrée pour RI (Rhode Island) dans le fichier epsg est comme suivant:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span># NAD83 / Rhode Island
+<div class="highlight-python"><div class="highlight"><pre># NAD83 / Rhode Island
 &lt;32130&gt; +proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.999994 +x_0=100000 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs  no_defs &lt;&gt;
 </pre></div>
 </div>
@@ -723,8 +707,8 @@ in your class.</p>
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

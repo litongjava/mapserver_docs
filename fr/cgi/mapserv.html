@@ -130,23 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="mapcontext.html" title="Fichiers de Contexte de Carte"
-             accesskey="N">suivant</a> |</li>
-        <li class="right" >
-          <a href="introduction.html" title="Introduction au CGI de MapServer"
-             accesskey="P">précédent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation de MapServer 7.0.0</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">CGI</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -157,15 +140,15 @@
   <div class="section" id="mapserv">
 <span id="id1"></span><h1>mapserv<a class="headerlink" href="#mapserv" title="Lien permanent vers ce titre">¶</a></h1>
 <p>L&#8217;interface CGI peut être testée en ligne de commande en utilisant le commutateur &#8220;QUERY_STRING&#8221;, comme suivant:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>mapserv &quot;QUERY_STRING=map=/ms4w/apps/gmap/htdocs/gmap75.map&amp;mode=map&quot;
+<div class="highlight-python"><div class="highlight"><pre>mapserv &quot;QUERY_STRING=map=/ms4w/apps/gmap/htdocs/gmap75.map&amp;mode=map&quot;
 </pre></div>
 </div>
 <p>Pour supprimer les en-têtes HTTP, vous pouvez utiliser le commutateur &#8220;-nh&#8221;, comme suivant:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>mapserv -nh &quot;QUERY_STRING=map=/ms4w/apps/gmap/htdocs/gmap75.map&amp;mode=map&quot;
+<div class="highlight-python"><div class="highlight"><pre>mapserv -nh &quot;QUERY_STRING=map=/ms4w/apps/gmap/htdocs/gmap75.map&amp;mode=map&quot;
 </pre></div>
 </div>
 <p>Pour sauver le résultat dans un fichier image, utilisez la commande de redirection comme suivant:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>mapserv -nh &quot;QUERY_STRING=map=/ms4w/apps/gmap/htdocs/gmap75.map&amp;mode=map&quot; &gt; test.png
+<div class="highlight-python"><div class="highlight"><pre>mapserv -nh &quot;QUERY_STRING=map=/ms4w/apps/gmap/htdocs/gmap75.map&amp;mode=map&quot; &gt; test.png
 </pre></div>
 </div>
 </div>
@@ -206,8 +189,8 @@
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

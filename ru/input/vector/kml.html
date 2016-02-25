@@ -130,24 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Навигация</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="Алфавитный указатель"
-             accesskey="I">указатель</a></li>
-        <li class="right" >
-          <a href="mapinfo.html" title="MapInfo"
-             accesskey="N">вперёд</a> |</li>
-        <li class="right" >
-          <a href="inline.html" title="Inline"
-             accesskey="P">назад</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../../documentation.html" >MapServer 7.0.0 Documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="../index.html" >Data Input</a> &raquo;</li>
-          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Vector Data</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -191,7 +173,7 @@ through the <a class="reference external" href="http://www.gdal.org/ogr/drv_libk
 ability to read multigeometry, and KMZ files).</p>
 <p>The CONNECTION parameter must include the kml or kmz extension, and the DATA parameter
 should be the name of the layer.</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">CONNECTIONTYPE</span> <span class="nb">OGR</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">CONNECTIONTYPE</span> <span class="nb">OGR</span>
 <span class="k">CONNECTION</span> <span class="s">&quot;filename.kml&quot;</span>
 <span class="k">DATA</span> <span class="s">&quot;layername&quot;</span>
 </pre></div>
@@ -203,7 +185,7 @@ should be the name of the layer.</p>
 <h3>OGRINFO<a class="headerlink" href="#ogrinfo" title="Ссылка на этот заголовок">¶</a></h3>
 <p>First you should make sure that your GDAL/OGR build contains the &#8220;KML&#8221; driver,
 by using the &#8216;&#8211;formats&#8217; command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;ogrinfo --formats
+<div class="highlight-python"><div class="highlight"><pre>&gt;ogrinfo --formats
    Loaded OGR Format Drivers:
    ...
    -&gt; &quot;GML&quot; (read/write)
@@ -216,14 +198,14 @@ by using the &#8216;&#8211;formats&#8217; command:</p>
 packages, which include the driver.</p>
 <p>Once you have the KML driver you are ready to try an ogrinfo command on your
 file to get a list of available layers:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;ogrinfo myplaces.kml
+<div class="highlight-python"><div class="highlight"><pre>&gt;ogrinfo myplaces.kml
    INFO: Open of `myplaces.kml&#39;
    using driver `KML&#39; successful.
    1: Layer #0 (Point)
 </pre></div>
 </div>
 <p>Now use ogrinfo to get information on the structure of the layer:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;ogrinfo fountains-hotel.kml &quot;Layer #0&quot; -summary
+<div class="highlight-python"><div class="highlight"><pre>&gt;ogrinfo fountains-hotel.kml &quot;Layer #0&quot; -summary
   Had to open data source read-only.
   INFO: Open of `fountains-hotel.kml&#39;
     using driver `KML&#39; successful.
@@ -250,7 +232,7 @@ file to get a list of available layers:</p>
 </div>
 <div class="section" id="mapfile-example">
 <h3>Mapfile Example<a class="headerlink" href="#mapfile-example" title="Ссылка на этот заголовок">¶</a></h3>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span> <span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre> <span class="k">LAYER</span>
    <span class="k">NAME</span> <span class="s">&quot;kml_example&quot;</span>
    <span class="k">TYPE</span> <span class="nb">POINT</span>
    <span class="k">STATUS</span> <span class="nb">DEFAULT</span>
@@ -284,7 +266,7 @@ file to get a list of available layers:</p>
 <h3>OGRINFO<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h3>
 <p>First you should make sure that your GDAL/OGR build contains the &#8220;LIBKML&#8221; driver,
 by using the &#8216;&#8211;formats&#8217; command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;ogrinfo --formats
+<div class="highlight-python"><div class="highlight"><pre>&gt;ogrinfo --formats
    Loaded OGR Format Drivers:
    ...
    -&gt; &quot;GML&quot; (read/write)
@@ -300,14 +282,14 @@ packages, which include the driver.  Or you can follow the
 libKML and GDAL/OGR.</p>
 <p>Once you have the LIBKML driver you are ready to try an ogrinfo command on your
 file to get a list of available layers:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;ogrinfo Lunenburg_Municipality.kmz
+<div class="highlight-python"><div class="highlight"><pre>&gt;ogrinfo Lunenburg_Municipality.kmz
    INFO: Open of `Lunenburg_Municipality.kmz&#39;
    using driver `LIBKML&#39; successful.
    1: Lunenburg_Municipality
 </pre></div>
 </div>
 <p>Now use ogrinfo to get information on the structure of the layer:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;ogrinfo Lunenburg_Municipality.kmz Lunenburg_Municipality -summary
+<div class="highlight-python"><div class="highlight"><pre>&gt;ogrinfo Lunenburg_Municipality.kmz Lunenburg_Municipality -summary
    INFO: Open of `Lunenburg_Municipality.kmz&#39;
       using driver `LIBKML&#39; successful.
 
@@ -341,7 +323,7 @@ file to get a list of available layers:</p>
 </div>
 <div class="section" id="id4">
 <h3>Mapfile Example<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
   <span class="k">NAME</span> <span class="s">&quot;lunenburg&quot;</span>
   <span class="k">TYPE</span> <span class="nb">POLYGON</span>
   <span class="k">STATUS</span> <span class="nb">DEFAULT</span>
@@ -377,7 +359,7 @@ and <a class="reference external" href="https://trac.osgeo.org/gdal/ticket/6311"
 <h3>GDALINFO<a class="headerlink" href="#gdalinfo" title="Ссылка на этот заголовок">¶</a></h3>
 <p>First you should make sure that your GDAL/OGR build contains the &#8220;KMLSUPEROVERLAY&#8221; driver,
 by using the &#8216;&#8211;formats&#8217; command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;gdalinfo --formats
+<div class="highlight-python"><div class="highlight"><pre>&gt;gdalinfo --formats
    Supported Formats:
    ...
    R -raster- (rwv): R Object Data Store
@@ -398,7 +380,7 @@ We will also access this remote file directly through <a class="reference extern
 which has been available in GDAL since 1.8.0</p>
 </div>
 <p>Now use gdalinfo to get information on the structure of the layer:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;gdalinfo /vsicurl/http://mw1.google.com/mw-earth-vectordb/kml-samples/mv-doqq.kml
+<div class="highlight-python"><div class="highlight"><pre>&gt;gdalinfo /vsicurl/http://mw1.google.com/mw-earth-vectordb/kml-samples/mv-doqq.kml
 
 Driver: KMLSUPEROVERLAY/Kml Super Overlay
 Files: none associated
@@ -458,7 +440,7 @@ Overviews: 8192x8192, 4096x4096, 2048x2048, 1024x1024, 512x512, 256x256
 <h3>Mapfile Example<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Finally, access the superoverlay image through a MapServer layer with <strong>TYPE RASTER</strong>,
 as you would other rasters, such as:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">MAP</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">MAP</span>
   <span class="k">NAME</span> <span class="s">&quot;superoverlay&quot;</span>
   <span class="k">STATUS</span> <span class="nb">ON</span>
   <span class="k">SIZE</span> <span class="mi">400</span> <span class="mi">300</span>
@@ -486,7 +468,7 @@ as you would other rasters, such as:</p>
 <h3>Test Your Mapfile with the shp2img Command<a class="headerlink" href="#test-your-mapfile-with-the-shp2img-command" title="Ссылка на этот заголовок">¶</a></h3>
 <p>The easiest way to test your superoverlay mapfile is with the MapServer
 <a class="reference internal" href="../../utilities/shp2img.html#shp2img"><span>shp2img utility</span></a>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;shp2img -m superoverlay-kml.map -o ttt.png -all_debug 3
+<div class="highlight-python"><div class="highlight"><pre>&gt;shp2img -m superoverlay-kml.map -o ttt.png -all_debug 3
 
 msLoadMap(): 0.000s
 msDrawMap(): rendering using outputformat named png (AGG/PNG).
@@ -570,8 +552,8 @@ shp2img total time: 4.441s
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

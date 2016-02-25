@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. Carte avec une seule couche &mdash; MapServer 7.0.0 documentation</title>
+    <title>1. Map with A Single Layer &mdash; MapServer 7.0.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -130,23 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="two_layers.html" title="2. A Map with Two Layers"
-             accesskey="N">suivant</a> |</li>
-        <li class="right" >
-          <a href="../index.html" title="MapServer Tutorials"
-             accesskey="P">précédent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../../documentation.html" >Documentation de MapServer 7.0.0</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">MapServer Tutorials</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -155,13 +138,17 @@
           <div class="body" role="main">
             
   <div class="section" id="map-with-a-single-layer">
-<span id="qs-single-layer"></span><h1>1. Carte avec une seule couche<a class="headerlink" href="#map-with-a-single-layer" title="Lien permanent vers ce titre">¶</a></h1>
-<p>This first tutorial shows how MapServer can display a dataset on a web page.</p>
+<span id="qs-single-layer"></span><h1>1. Map with A Single Layer<a class="headerlink" href="#map-with-a-single-layer" title="Lien permanent vers ce titre">¶</a></h1>
+<p>This first tutorial shows how MapServer can display a dataset on a web page. The layer is
+served as a WMS this stands for Web Map Service, which is a &#8220;web-based interoperability service&#8221;
+based on specifications published by the Open Geospatial Consortium (OGC).</p>
+<p>The data used in this example is a shapefile.</p>
 <div class="section" id="live-example">
 <h2>1.1. Live Example<a class="headerlink" href="#live-example" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Once you have successfully configured MapServer you can update the two text boxes
 below with your own webserver address, and path to your mapfile.</p>
-<p>The results should look the same as below, which is running from a live demo server.</p>
+<p>The results should look the same as below, which is running from a live demo server, with
+the data displayed in an <a class="reference external" href="http://openlayers.org/">OpenLayers3 map</a></p>
 <!DOCTYPE html>
 <html>
     <head>
@@ -174,14 +161,12 @@ below with your own webserver address, and path to your mapfile.</p>
         <form>
             <label>
                 Mapserver location:
-                <input id="ms-tutorial-location" type="text" value="http://demo.mapserver.org/cgi-bin/wms" />
+                <input id="ms-tutorial-location" type="text" value="http://demo.mapserver.org/cgi-bin/mapserv70" />
             </label>
-<!--
             <label>
                 Map file path:
-                <input id="mapfile-path" type="text" value="single_layer.map" />
+                <input id="mapfile-path" type="text" value="/osgeo/mapserver/tutorial-7.0/single_layer.map" />
             </label>
--->
 
             <button id="validate-btn" type="submit">Validate</button>
         </form>
@@ -196,8 +181,7 @@ below with your own webserver address, and path to your mapfile.</p>
                 })
             });
 
-            // Temporary disable this to use old demo.mapserver.org
-            //document.getElementById('validate-btn').addEventListener('click', updateLayers);
+            document.getElementById('validate-btn').addEventListener('click', updateLayers);
             updateLayers();
 
             function updateLayers(e) {
@@ -208,18 +192,15 @@ below with your own webserver address, and path to your mapfile.</p>
                 if (!msAddress.endsWith('?')) {
                     msAddress += '?';
                 }
-                // Temporary set it to empty to use old demo.mapserver.org page
-                //var mapfilePath = document.getElementById('mapfile-path').value;
-                //mapfilePath = 'MAP=' + mapfilePath;
-                var mapfilePath = '';
+                var mapfilePath = document.getElementById('mapfile-path').value;
+                mapfilePath = 'MAP=' + mapfilePath;
                 map.getLayers().getArray().forEach(function (layer) {
                     map.removeLayer(layer);
                 });
                 var layer = new ol.layer.Tile({
                     source: new ol.source.TileWMS({
                         url: msAddress + mapfilePath,
-                        // Must switch back to land once new demo is online.
-                        params: {LAYERS: 'bluemarble', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
+                        params: {LAYERS: 'land', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
                         serverType: 'mapserver'
                     })
                 });
@@ -242,7 +223,7 @@ the complexity of these hierarchical trees will increase.</p>
 <p>Quelques notes à propos des mapfiles: nous définissons chaque objet dans le mapfile avec le nom de l&#8217;objet et nous le fermons avec &#8220;END&#8221; et nous précédons les commentaires avec un signe (#).</p>
 <p>Let&#8217;s break &#8220;single_layer.map&#8221; down by objects. Its structure looks like
 this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>MAP
+<div class="highlight-python"><div class="highlight"><pre>MAP
  |-LAYER
     |-CLASS
        |-STYLE
@@ -260,30 +241,11 @@ this:</p>
 </dd>
 <dt><strong>EXTENT</strong></dt>
 <dd><p class="first">Ce paramètre spécifie l&#8217;étendue de sortie de votre carte &#8211;le &#8220;rectangle encadrant&#8221; (bounding box en anglais) de notre carte initiale. Les valeurs de l&#8217;EXTENT sont données sous ce format:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;Lower Left X&gt; &lt;Lower Left Y&gt; &lt;Upper Right X&gt; &lt;Upper Right Y&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;Lower Left X&gt; &lt;Lower Left Y&gt; &lt;Upper Right X&gt; &lt;Upper Right Y&gt;
 </pre></div>
 </div>
-<p>avec des espaces séparant chaque valeur. Il doit être renseigné dans la même unité que la donnée ou, si on a spécifier une projection en sortie différente, dans la même unité que la projection en sortie.</p>
-<p>Dans cet exemple votre donnée est dans une projection géographique ainsi les unités sont en degrés décimaux. Vous pouvez utiliser l&#8217;utilitaire <a class="reference external" href="http://gdal.osgeo.org/ogr_utilities.html">ogrinfo</a>, qui fait partie intégrante de la bibliothèque GDAL/OGR, pour obtenir l&#8217;étendue d&#8217;un shapefile particulier (ou d&#8217;autres formats vecteur supportés). Voici la commande que j&#8217;utilise pour obtenir l&#8217;étendue pour cet exemple:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>ogrinfo -al -so states_ugl.shp
-</pre></div>
-</div>
-<p>Cela retourne la sortie suivante:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>INFO: Open of `states_ugl.shp&#39; using driver `ESRI Shapefile&#39; successful.
-Layer name: states_ugl
-Geometry: Polygon
-Feature Count: 204
-Extent: (-97.238976, 41.619778) - (-82.122902, 49.385620)
-Layer SRS WKT:(unknown)
-AREA: Real (12.3)
-PERIMETER: Real (12.3)
-STATESP020: Real (11.0)STATE: String (20.0)
-STATE_FIPS: String (2.0)
-CLASS: String (5.0)
-</pre></div>
-</div>
-<p>Vous pouvez aussi utiliser ArcView ou d&#8217;autres logiciels SIG open source &#8211;QGIS, Thuban, etc.</p>
-<p class="last">N&#8217;hésitez pas à changer les valeurs de l&#8217;EXTENT pour avoir une meilleure compréhension de comment cela affecte votre carte.</p>
+<p class="last">with spaces separating each value. In this example our data is in geographic
+projection so the units are in decimal degrees.</p>
 </dd>
 <dt><strong>SIZE</strong></dt>
 <dd><p class="first last">C&#8217;est la taille de l&#8217;image (la carte) que MapServer va générer, en pixels. Ainsi notre carte fait 400 pixels de large par 300 pixels de haut. A nouveau, changez comme vousle sentez ces valeurs et voyez les changements sur la carte.</p>
@@ -299,14 +261,13 @@ CLASS: String (5.0)
 <div class="section" id="layer-object">
 <h3>1.2.2. Objet LAYER<a class="headerlink" href="#layer-object" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Maintenant regardons aux paramètres de l&#8217;objet LAYER:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
     <span class="k">NAME</span> <span class="s">&#39;land&#39;</span>
     <span class="k">TYPE</span> <span class="nb">POLYGON</span>
-    <span class="k">STATUS</span> <span class="nb">ON</span>
     <span class="k">PROJECTION</span>
         <span class="s">&#39;init=epsg:4326&#39;</span>
     <span class="k">END</span>
-    <span class="k">DATA</span> <span class="s">&#39;natural_earth/110m_physical/ne_110m_land/ne_10m_land&#39;</span>
+    <span class="k">DATA</span> <span class="s">&#39;natural_earth/110m_physical/ne_110m_land/ne_10m_land.shp&#39;</span>
     <span class="c"># START OF THE CLASS DEFINITION</span>
     <span class="k">CLASS</span>
         <span class="c"># START OF THE STYLE DEFINITION</span>
@@ -323,26 +284,25 @@ CLASS: String (5.0)
 </div>
 <dl class="docutils">
 <dt><strong>LAYER</strong></dt>
-<dd><p class="first last">Marque le début de la couche <a class="reference internal" href="../../mapfile/layer.html#layer"><span>LAYER</span></a> à l&#8217;intérieur de l&#8217;objet MAP. Vous pouvez spécifier autant de couches que vous voulez (dans les versions de Mapserver &lt; 5, il y avait une limite qui pouvaient être changées en éditant le fichier d&#8217;en-tête map.h et en recompilant MapServer).</p>
-</dd>
+<dd>Marks the beginning of a <a class="reference internal" href="../../mapfile/layer.html#layer"><span>LAYER</span></a> within the MAP
+object.  You can specify as many layers as you like.</dd>
 <dt><strong>NAME</strong></dt>
-<dd><p class="first last">C&#8217;est l&#8217;identifiant de la couche. MapServer utilise ce nom pour activer/désactiver la couche. Cela ne marche pas dans cet exemple comme nous avons le STATUS de la couche défini à default. Nous reviendrons dessus dans des exemples ultérieurs.</p>
-</dd>
+<dd>This is the layer identifier and has to be unique for each layer.
+This is also the name of the WMS layer.</dd>
 <dt><strong>DATA</strong></dt>
-<dd><p class="first last">Le nom de la donnée (shapefile dans ce cas). MapServer supporte des formats de donnéés vecteur autres que les shapefiles ESRI via l&#8217;utilisation de la bibliothèques OGR (qui fait partie du logiciel GDAL). Merci de visiter le site web du projet GDAL sur <a class="reference external" href="http://gdal.osgeo.org/">http://gdal.osgeo.org/</a> et lire <a class="reference external" href="http://gdal.osgeo.org/ogr/">http://gdal.osgeo.org/ogr/</a> pour en savoir plus sur les différents formats vecteur que supporte MapServer. De plus, Jeff McKenna et Tyler Mitchell ont écrit un <a class="reference internal" href="../../input/vector/index.html#vector"><span>guide détaillé pour utiliser les données vecteur pour MapServer</span></a>.</p>
-</dd>
+<dd>The name of the data (Shapefile dataset in this case). MapServer
+supports many different vector data formats which are discussed further in</dd>
 <dt><strong>TYPE</strong></dt>
-<dd><p class="first last">Quel type de données est-ce? Si c&#8217;est une donné vecteur, vous pouvez spécifier si c&#8217;est un POLYGON, une LINE (vous utilisez LINE même si votre donnée est techniquement une POLYLINE), ou un POINT. Vous pouvez aussi spécifier une donnée RASTER ou ANNOTATION.  Ici, nous voulons afficher un POLYGON.</p>
-</dd>
-<dt><strong>STATUS</strong></dt>
-<dd><p class="first last">Les couches sont activées ou désactivées en fonction de leur STATUS. DEFAULT est toujours actif.  ON ou OFF marchent quand le nom de la LAYER est passé dans dans la chaîne d&#8217;interrogation.</p>
-</dd>
+<dd>What type of data is it? If it&#8217;s a vector data, you can specify
+whether it is a POLYGON, LINE (you use LINE even if your data is
+technically a POLYLINE), or a POINT. You can also specify RASTER or
+ANNOTATION data. Here we want to display POLYGON.</dd>
 </dl>
 </div>
 <div class="section" id="class-object">
 <h3>1.2.3. Objet CLASS<a class="headerlink" href="#class-object" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Jetons un oeil aux paramètres de l&#8217;objet CLASS:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">CLASS</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">CLASS</span>
     <span class="c"># START OF THE STYLE DEFINITION</span>
     <span class="k">STYLE</span>
         <span class="k">COLOR</span> <span class="mi">238</span> <span class="mi">236</span> <span class="mi">223</span>
@@ -365,7 +325,7 @@ CLASS: String (5.0)
 <div class="section" id="style-object">
 <h3>1.2.4. Objet STYLE<a class="headerlink" href="#style-object" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Enfin, regardons les paramètres de l&#8217;objet STYLE:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">STYLE</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">STYLE</span>
     <span class="k">COLOR</span> <span class="mi">238</span> <span class="mi">236</span> <span class="mi">223</span>
     <span class="k">OUTLINECOLOR</span> <span class="mi">255</span> <span class="mi">255</span> <span class="mi">0</span>
     <span class="k">WIDTH</span> <span class="mf">1.5</span>
@@ -405,7 +365,7 @@ CLASS: String (5.0)
 </p>
   <h3>Current Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">1. Carte avec une seule couche</a><ul>
+<li><a class="reference internal" href="#">1. Map with A Single Layer</a><ul>
 <li><a class="reference internal" href="#live-example">1.1. Live Example</a></li>
 <li><a class="reference internal" href="#mapfile-structure">1.2. Structure d&#8217;un Mapfile</a><ul>
 <li><a class="reference internal" href="#map-object">1.2.1. Objet &#8216;MAP</a></li>
@@ -439,8 +399,8 @@ CLASS: String (5.0)
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

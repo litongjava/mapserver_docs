@@ -5,3 +5,15 @@
 ===========================
 Using Different Datasources
 ===========================
+
+
+..
+   MapServer
+   supports vector data formats other than ESRI's Shapefile format
+   through the use of OGR library (part of the GDAL software package).
+   Please visit the GDAL project web site at
+   `<http://gdal.osgeo.org/>`_ and read
+   `<http://gdal.osgeo.org/ogr/>`_ to learn more about the different
+   vector formats MapServer supports.  In addition, Jeff McKenna and
+   Tyler Mitchell have written a detailed :ref:`guide to using vector
+   data for MapServer <vector>`.

@@ -130,23 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>ナビゲーション</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="総合索引"
-             accesskey="I">索引</a></li>
-        <li class="right" >
-          <a href="wms_client.html" title="WMS Client"
-             accesskey="N">次へ</a> |</li>
-        <li class="right" >
-          <a href="wms_server.html" title="WMS Server"
-             accesskey="P">前へ</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../documentation.html" >MapServer 7.0.0 Documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">OGC Support and Configuration</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -216,7 +199,7 @@ namespace as well as appropriate validation warnings are generated in the
 capabilities document.</p>
 <p>Scenario 1 - activate INSPIRE support using a reference to external service
 metadata:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>WEB
+<div class="highlight-python"><div class="highlight"><pre>WEB
  METADATA
   &quot;wms_inspire_capabilities&quot; &quot;url&quot;
   ...
@@ -225,7 +208,7 @@ END
 </pre></div>
 </div>
 <p>Scenario 2 - activate INSPIRE support using embedded service metadata:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>WEB
+<div class="highlight-python"><div class="highlight"><pre>WEB
  METADATA
   &quot;wms_inspire_capabilities&quot; &quot;embed&quot;
   ...
@@ -261,7 +244,7 @@ metadata values, namely</p>
 language is default) through <code class="docutils literal"><span class="pre">wms_languages</span></code> in the <code class="docutils literal"><span class="pre">WEB.METADATA</span></code>
 section of the mapfile. This language parameter is also added to the
 <code class="docutils literal"><span class="pre">OnlineResource</span></code> in the GetCapabilities output:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>WEB
+<div class="highlight-python"><div class="highlight"><pre>WEB
  METADATA
   ...
   &quot;wms_languages&quot; &quot;eng,ger&quot;       #first default, values according ISO 639-2/B
@@ -271,7 +254,7 @@ END
 </pre></div>
 </div>
 <p>For language specific metadata values, a key extension method is applied:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>WEB
+<div class="highlight-python"><div class="highlight"><pre>WEB
  METADATA
   ...
   &quot;wms_title.eng&quot; &quot;myservicetitle&quot;
@@ -286,7 +269,7 @@ END
 <p>For language dependent reference data, a similar approach like the
 <a class="reference internal" href="../cgi/runsub.html#runsub"><span>run-time substitution</span></a> feature of MapServer has been followed
 (only <code class="docutils literal"><span class="pre">DATA</span></code> and <code class="docutils literal"><span class="pre">CONNECTION</span></code> values with %language% are substituted):</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>...
+<div class="highlight-python"><div class="highlight"><pre>...
   LAYER
    NAME TN.RoadTransportNetwork.RoadLink
    DATA &quot;road_%language%&quot;
@@ -303,7 +286,7 @@ default language is substituted.</p>
 <p>Depending on the scenario, additional metadata information is required to
 support the specification. The INSPIRE related fields are provided below.</p>
 <p>Scenario 1 - INSPIRE related fields using referenced external service metadata:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>WEB
+<div class="highlight-python"><div class="highlight"><pre>WEB
  METADATA
   &quot;wms_inspire_capabilities&quot; &quot;url&quot;
   &quot;wms_languages&quot; &quot;eng,ger&quot;               #first default, values according ISO 639-2/B
@@ -323,7 +306,7 @@ END
 </pre></div>
 </div>
 <p>Scenario 2 - INSPIRE related fields using embedded service metadata:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>WEB
+<div class="highlight-python"><div class="highlight"><pre>WEB
  METADATA
   &quot;wms_inspire_capabilities&quot; &quot;embed&quot;
   &quot;wms_languages&quot; &quot;eng,ger&quot;               #first default, values according ISO 639-2/B
@@ -369,7 +352,7 @@ the same name as used in <code class="docutils literal"><span class="pre">wms_la
 group and if no layer with this name is found as unnamed group as before.</p>
 <p>Provided that ability, a hierarchy of any level can be achieved. See for
 example the grouping used in the <a class="reference external" href="https://svn.osgeo.org/mapserver/sandbox/inspire_soc2011/msautotest/wxs/wms_inspire.map">wms_inspire.map</a> mapfile in msautotest:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>TN
+<div class="highlight-python"><div class="highlight"><pre>TN
 +--- TN.CommonTransportElements
      +--- TN.CommonTransportElements.TransportArea
      +--- TN.CommonTransportElements.TransportLink
@@ -394,7 +377,7 @@ the layer style name to the according value. Additionally the layer style
 titles can be overwritten through <code class="docutils literal"><span class="pre">wms_style_&lt;stylename&gt;_title</span></code> and the
 layer style legendURLs through <code class="docutils literal"><span class="pre">wms_style_&lt;stylename&gt;_legendurl_*</span></code> (width,
 height, format, and href need to be provided):</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>...
+<div class="highlight-python"><div class="highlight"><pre>...
   LAYER
    NAME TN.RoadTransportNetwork.RoadLink
    DATA &quot;road&quot;
@@ -446,7 +429,7 @@ section to add a style section to the group layer</li>
 <li>use <code class="docutils literal"><span class="pre">wms_group_style_legendurl_*</span></code> to override width, height, format and
 href of the legendURL (optional)</li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre><span></span>...
+<div class="highlight-python"><div class="highlight"><pre>...
   WEB
    METADATA
     ...
@@ -488,7 +471,7 @@ href of the legendURL (optional)</li>
 <p>Provided that ability, 3 levels of hierarchy can be achieved as done in the
 example mapfiles <a class="reference external" href="https://svn.osgeo.org/mapserver/sandbox/inspire_soc2011/msautotest/wxs/wms_inspire_scenario1.map">wms_inspire_scenario1.map</a> and <a class="reference external" href="https://svn.osgeo.org/mapserver/sandbox/inspire_soc2011/msautotest/wxs/wms_inspire_scenario2.map">wms_inspire_scenario2.map</a>
 in msautotest:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>TN.RoadTransportNetwork.RoadArea
+<div class="highlight-python"><div class="highlight"><pre>TN.RoadTransportNetwork.RoadArea
 +--- TN.RoadTransportNetwork.RoadLink
 +--- TN.CommonTransportElements.TransportLink
      +--- TN.RailTransportNetwork.RailwayLink
@@ -547,8 +530,8 @@ in msautotest:</p>
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

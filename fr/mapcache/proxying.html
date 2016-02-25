@@ -130,23 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="sources.html" title="Sources de données"
-             accesskey="N">suivant</a> |</li>
-        <li class="right" >
-          <a href="featureinfo.html" title="Requêtes FeatureInfo"
-             accesskey="P">précédent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation de MapServer 7.0.0</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">MapCache 1.4</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -181,7 +164,7 @@ compatibility for, e.g., unsupported grids, WFS requests, ...</p>
 <p class="last">La proxyfication des requêtes se configure au sein du service <a class="reference internal" href="services.html#mapcache-wms"><span>WMS</span></a> MapCache, ce qui peut sembler sémantiquement étrange.</p>
 </div>
 <p>La configuration de ce comportement s&#8217;active par une succession d&#8217;instructions au sein de l&#8217;élément   &lt;forwarding_rule&gt; du &lt;service&gt; wms. Les règles sont testées dans l&#8217;ordre d&#8217;apparition dans le fichier mapcache.xml, et la première qui correspond est utilisée. Si aucune règle n&#8217;est indiquée, ou si aucune règle ne correspond à la requête entrante, une erreur est renvoyée à l&#8217;utilisateur.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;service</span> <span class="na">type=</span><span class="s">&quot;wms&quot;</span> <span class="na">enabled=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;service</span> <span class="na">type=</span><span class="s">&quot;wms&quot;</span> <span class="na">enabled=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
    <span class="nt">&lt;forwarding_rule</span> <span class="na">name=</span><span class="s">&quot;first rule&quot;</span><span class="nt">&gt;</span>
       <span class="c">&lt;!-- rule tests --&gt;</span>
       <span class="c">&lt;!-- proxy destination --&gt;</span>
@@ -198,7 +181,7 @@ compatibility for, e.g., unsupported grids, WFS requests, ...</p>
 <h2>Filtrage selon des paramètres<a class="headerlink" href="#parameter-filtering" title="Lien permanent vers ce titre">¶</a></h2>
 <p>The rules apply to the key-value pair parameters received in the incoming request,
 and are added with the &lt;param&gt; keyword:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;forwarding_rule</span> <span class="na">name=</span><span class="s">&quot;first rule&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;forwarding_rule</span> <span class="na">name=</span><span class="s">&quot;first rule&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;SERVICE&quot;</span> <span class="na">type=</span><span class="s">&quot;values&quot;</span><span class="nt">&gt;</span>WFS,WCS<span class="nt">&lt;/param&gt;</span>
   <span class="c">&lt;!-- ... !&gt;</span>
 <span class="c">&lt;forwarding_rule&gt;</span>
@@ -208,7 +191,7 @@ and are added with the &lt;param&gt; keyword:</p>
 &#8220;intervals&#8221;. In the previous example, the rule would match any incoming
 request having ...&amp;SERVICE=WFS&amp;... or ...&amp;SERVICE=WCS&amp;... in its request
 parameters.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;forwarding_rule</span> <span class="na">name=</span><span class="s">&quot;first rule&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;forwarding_rule</span> <span class="na">name=</span><span class="s">&quot;first rule&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;SERVICE&quot;</span> <span class="na">type=</span><span class="s">&quot;values&quot;</span><span class="nt">&gt;</span>WFS,WCS<span class="nt">&lt;/param&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;LAYERS&quot;</span> <span class="na">type=</span><span class="s">&quot;values&quot;</span><span class="nt">&gt;</span>somelayername<span class="nt">&lt;/param&gt;</span>
   <span class="c">&lt;!-- ... !&gt;</span>
@@ -231,7 +214,7 @@ client.</p>
 <div class="section" id="proxy-destination">
 <h2>Destination de la redirection<a class="headerlink" href="#proxy-destination" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Une fois qu&#8217;une &lt;forwarding_rule&gt; correspond, son élément &lt;http&gt; sera utilisé pour transférer la requête à la destination indiquée.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;forwarding_rule</span> <span class="na">name=</span><span class="s">&quot;first rule&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;forwarding_rule</span> <span class="na">name=</span><span class="s">&quot;first rule&quot;</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... !&gt;</span>
 <span class="c">  &lt;http&gt;</span>
 <span class="c">     &lt;url&gt;http://wmsserver/ogc.cgi?&lt;/url&gt;</span>
@@ -291,8 +274,8 @@ client.</p>
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

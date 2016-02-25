@@ -1,10 +1,14 @@
 .. _qs_single_layer:
 
 =======================
-Map With A Single Layer
+Map with A Single Layer
 =======================
 
-This first tutorial shows how MapServer can display a dataset on a web page. 
+This first tutorial shows how MapServer can display a dataset on a web page. The layer is
+served as a WMS this stands for Web Map Service, which is a "web-based interoperability service" 
+based on specifications published by the Open Geospatial Consortium (OGC). 
+
+The data used in this example is a shapefile. 
  
 Live Example
 ------------
@@ -12,7 +16,8 @@ Live Example
 Once you have successfully configured MapServer you can update the two text boxes
 below with your own webserver address, and path to your mapfile. 
 
-The results should look the same as below, which is running from a live demo server. 
+The results should look the same as below, which is running from a live demo server, with
+the data displayed in an `OpenLayers3 map <http://openlayers.org/>`_
 
 .. raw:: html
 	:file: single_layer.html
@@ -71,38 +76,8 @@ Let's look at the keywords (parameters) within the MAP object:
 
      <Lower Left X> <Lower Left Y> <Upper Right X> <Upper Right Y>
 
-   with spaces separating each value. This needs to be in the same
-   units as the data or, if specifying a different output projection,
-   in the same units as the output projection.
-
-   In this example our data is in geographic projection so the units
-   are in decimal degrees.  You can use the utility `ogrinfo
-   <http://gdal.osgeo.org/ogr_utilities.html>`_, which is part of the
-   GDAL/OGR library package, to get the extent of a particular
-   Shapefile dataset (or other supported vector formats).  Here is the
-   command I used to get the extent for this example::
-
-     ogrinfo -al -so states_ugl.shp
-
-   This returned the following output::
-
-     INFO: Open of `states_ugl.shp' using driver `ESRI Shapefile' successful.
-     Layer name: states_ugl
-     Geometry: Polygon
-     Feature Count: 204
-     Extent: (-97.238976, 41.619778) - (-82.122902, 49.385620)
-     Layer SRS WKT:(unknown)
-     AREA: Real (12.3)
-     PERIMETER: Real (12.3)
-     STATESP020: Real (11.0)STATE: String (20.0)
-     STATE_FIPS: String (2.0)
-     CLASS: String (5.0)
-
-   You can also use ArcView or an open source GIS packages--QGIS,
-   Thuban, etc.
-
-   Feel free to change the values of EXTENT to get a better
-   understanding of how it changes your map.
+   with spaces separating each value. In this example our data is in geographic 
+   projection so the units are in decimal degrees.      
 
 **SIZE**
    This is the size of the image (the map) that MapServer will
@@ -139,37 +114,21 @@ Now let's look at the LAYER object parameters:
 
 **LAYER**
    Marks the beginning of a :ref:`LAYER <layer>` within the MAP
-   object.  You can specify as many layers as you like (in MapServer 
-   versions < 5, there was a limit that could be changed by editing
-   the map.h header file and recompileing MapServer).
+   object.  You can specify as many layers as you like. 
 
 **NAME**
-   This is the layer identifier.  MapServer uses this name to toggle
-   the layer on and off.  It won't work in this example as we have the
-   layer STATUS set to default.  We will get back to this in later
-   examples.
+   This is the layer identifier and has to be unique for each layer. 
+   This is also the name of the WMS layer. 
 
 **DATA**
    The name of the data (Shapefile dataset in this case). MapServer
-   supports vector data formats other than ESRI's Shapefile format
-   through the use of OGR library (part of the GDAL software package).
-   Please visit the GDAL project web site at
-   `<http://gdal.osgeo.org/>`_ and read
-   `<http://gdal.osgeo.org/ogr/>`_ to learn more about the different
-   vector formats MapServer supports.  In addition, Jeff McKenna and
-   Tyler Mitchell have written a detailed :ref:`guide to using vector
-   data for MapServer <vector>`.
+   supports many different vector data formats which are discussed further in
 
 **TYPE**
    What type of data is it? If it's a vector data, you can specify
    whether it is a POLYGON, LINE (you use LINE even if your data is
    technically a POLYLINE), or a POINT. You can also specify RASTER or
-   ANNOTATION data.  Here we want to display POLYGON.
-
-**STATUS**
-   Layers are turned on or off based on their STATUS. DEFAULT is
-   always on.  ON or OFF works when the LAYER name is passed as part
-   of the query string.
+   ANNOTATION data. Here we want to display POLYGON.
 
 CLASS Object
 ************

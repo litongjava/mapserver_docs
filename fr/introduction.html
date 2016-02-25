@@ -130,22 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="tutorial/index.html" title="MapServer Tutorials"
-             accesskey="N">suivant</a> |</li>
-        <li class="right" >
-          <a href="documentation.html" title="Documentation de MapServer 7.0.0"
-             accesskey="P">précédent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="documentation.html" accesskey="U">Documentation de MapServer 7.0.0</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -307,7 +291,7 @@
 </div>
 </li>
 <li><p class="first">Démarrer Apache depuis le &#8220;OSGeo4W shell&#8221; et ouvrer votre navigateur à l&#8217;adresse <a class="reference external" href="http://127.0.0.1">http://127.0.0.1</a></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">apache</span><span class="o">-</span><span class="n">restart</span><span class="o">.</span><span class="n">bat</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">apache</span><span class="o">-</span><span class="n">restart</span><span class="o">.</span><span class="n">bat</span>
 </pre></div>
 </div>
 <img alt="_images/osgeo4w-install-complete.png" src="_images/osgeo4w-install-complete.png" />
@@ -345,7 +329,7 @@ functionality for several Linux distributions.</p>
 <div class="section" id="introduction-to-the-mapfile">
 <h2><a class="toc-backref" href="#contents">Introduction to the Mapfile</a><a class="headerlink" href="#introduction-to-the-mapfile" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le fichier .map est un fichier de configuration basique pour accéder aux données et aux styles pour MapServer. Le fichier est un fichier texte ASCII, et est constitué de différents objets. Chaque objet a une variété de paramètres disponibles pour lui. Tous les paramètres d&#8217;un fichier .map (ou mapfile) sont documentés dans la <a class="reference internal" href="mapfile/index.html#mapfile"><span>référence de mapfile</span></a>. Un exemple de mapfile simple n&#8217;affichant qu&#8217;une seule couche est visible ci-dessous, suivi du rendu image associé&nbsp;:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">MAP</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">MAP</span>
     <span class="k">NAME</span> <span class="s">&quot;sample&quot;</span>
     <span class="k">STATUS</span> <span class="nb">ON</span>
     <span class="k">SIZE</span> <span class="mi">600</span> <span class="mi">400</span>
@@ -409,7 +393,7 @@ functionality for several Linux distributions.</p>
 </div>
 <div class="section" id="map-object">
 <h3>MAP Object<a class="headerlink" href="#map-object" title="Lien permanent vers ce titre">¶</a></h3>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">MAP</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">MAP</span>
   <span class="k">NAME</span> <span class="s">&quot;sample&quot;</span>
   <span class="k">EXTENT</span> <span class="p">-</span><span class="mi">180</span> <span class="p">-</span><span class="mi">90</span> <span class="mi">180</span> <span class="mi">90</span> <span class="c"># Geographic</span>
   <span class="k">SIZE</span> <span class="mi">800</span> <span class="mi">400</span>
@@ -442,7 +426,7 @@ functionality for several Linux distributions.</p>
 </ul>
 <div class="section" id="raster-layers">
 <h4>Couches Raster<a class="headerlink" href="#raster-layers" title="Lien permanent vers ce titre">¶</a></h4>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
     <span class="k">NAME</span> <span class="s">&quot;bathymetry&quot;</span>
     <span class="k">TYPE</span> <span class="nb">RASTER</span>
     <span class="k">STATUS</span> <span class="nb">DEFAULT</span>
@@ -458,7 +442,7 @@ functionality for several Linux distributions.</p>
 <div class="section" id="vector-layers">
 <h4>Couches vecteur<a class="headerlink" href="#vector-layers" title="Lien permanent vers ce titre">¶</a></h4>
 <p>Des couches vecteur de <cite>TYPE</cite> <cite>point</cite>, <cite>line</cite>, ou <cite>polygon</cite> peuvent être affichées. L&#8217;exemple suivant montre comment afficher seulement les lignes d&#8217;une couche de <cite>TYPE</cite> polygon, en utilisant le paramètre <cite>OUTLINECOLOR</cite>:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
   <span class="k">NAME</span> <span class="s">&quot;world_poly&quot;</span>
   <span class="k">DATA</span> <span class="s">&#39;shapefile/countries_area.shp&#39;</span>
   <span class="k">STATUS</span> <span class="nb">ON</span>
@@ -492,7 +476,7 @@ functionality for several Linux distributions.</p>
 <li>the following example shows how to display a road line with two colors by
 using overlaid <cite>STYLE</cite> objects</li>
 </ul>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">CLASS</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">CLASS</span>
   <span class="k">NAME</span> <span class="s">&quot;Primary Roads&quot;</span>
   <span class="k">STYLE</span>
     <span class="k">SYMBOL</span> <span class="s">&quot;circle&quot;</span>
@@ -520,7 +504,7 @@ using overlaid <cite>STYLE</cite> objects</li>
 <li><p class="first">la méthode avec fichier séparé doit obligatoirement utiliser le paramètre <cite>SYMBOLSET</cite> dans l&#8217;objet <cite>MAP</cite>:</p>
 </li>
 </ul>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">MAP</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">MAP</span>
   <span class="k">NAME</span> <span class="s">&quot;sample&quot;</span>
   <span class="k">EXTENT</span> <span class="p">-</span><span class="mi">180</span> <span class="p">-</span><span class="mi">90</span> <span class="mi">180</span> <span class="mi">90</span> <span class="c"># Geographic</span>
   <span class="k">SIZE</span> <span class="mi">800</span> <span class="mi">400</span>
@@ -530,7 +514,7 @@ using overlaid <cite>STYLE</cite> objects</li>
 </pre></div>
 </div>
 <p>ou symbols.txt pourrait contenir:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">SYMBOL</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">SYMBOL</span>
   <span class="k">NAME</span> <span class="s">&quot;ski&quot;</span>
   <span class="k">TYPE</span> <span class="nb">PIXMAP</span>
   <span class="k">IMAGE</span> <span class="s">&quot;ski.png&quot;</span>
@@ -538,7 +522,7 @@ using overlaid <cite>STYLE</cite> objects</li>
 </pre></div>
 </div>
 <p>et le mapfile contiendrait</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
   <span class="p">...</span>
   <span class="k">CLASS</span>
     <span class="k">NAME</span> <span class="s">&quot;Ski Area&quot;</span>
@@ -567,7 +551,7 @@ using overlaid <cite>STYLE</cite> objects</li>
 </li>
 </ul>
 <p>Un exemple d&#8217;objet <a class="reference internal" href="mapfile/label.html#label"><span>LABEL</span></a> qui référence une des polices ci-dessus devrait ressembler à:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LABEL</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LABEL</span>
   <span class="k">FONT</span> <span class="s">&quot;sans-bold&quot;</span>
   <span class="k">TYPE</span> <span class="nb">truetype</span>
   <span class="k">ENCODING</span> <span class="s">&quot;UTF-8&quot;</span>
@@ -594,21 +578,21 @@ using overlaid <cite>STYLE</cite> objects</li>
 <ol class="arabic">
 <li><p class="first">Comparaison de chaînes</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span>EXPRESSION &quot;africa&quot;
+<div><div class="highlight-python"><div class="highlight"><pre>EXPRESSION &quot;africa&quot;
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p class="first">Expressions régulières</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span>EXPRESSION /^9|^10/
+<div><div class="highlight-python"><div class="highlight"><pre>EXPRESSION /^9|^10/
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p class="first">Expressions logiques</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span>EXPRESSION ([POPULATION] &gt; 50000 AND &#39;[LANGUAGE]&#39; eq &#39;FRENCH&#39;)
+<div><div class="highlight-python"><div class="highlight"><pre>EXPRESSION ([POPULATION] &gt; 50000 AND &#39;[LANGUAGE]&#39; eq &#39;FRENCH&#39;)
 </pre></div>
 </div>
 </div></blockquote>
@@ -634,7 +618,7 @@ using overlaid <cite>STYLE</cite> objects</li>
 </ul>
 <p>L&#8217;exemple suivant est un exemple d&#8217;utilisation de mapfile <a class="reference internal" href="mapfile/include.html#include"><span>includes</span></a> pour inclure une définition de couche dans un fichier séparé:</p>
 <p>Si &#8216;shadedrelief.lay&#8217; contient:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">LAYER</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
   <span class="k">NAME</span> <span class="s">&#39;shadedrelief&#39;</span>
   <span class="k">STATUS</span> <span class="nb">ON</span>
   <span class="k">TYPE</span> <span class="nb">RASTER</span>
@@ -643,7 +627,7 @@ using overlaid <cite>STYLE</cite> objects</li>
 </pre></div>
 </div>
 <p>en conséquent le fichier mapfile principal devrait contenir:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">MAP</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">MAP</span>
   <span class="p">...</span>
   <span class="k">INCLUDE</span> <span class="s">&quot;shadedrelief.lay&quot;</span>
   <span class="p">...</span>
@@ -651,7 +635,7 @@ using overlaid <cite>STYLE</cite> objects</li>
 </pre></div>
 </div>
 <p>Le contenu suivant est un exemple de mapfile où toutes les couches <a class="reference internal" href="mapfile/layer.html#layer"><span>LAYER</span></a> sont dans fichiers .lay séparés, et tous les autres objets (&nbsp;<a class="reference internal" href="mapfile/web.html#web"><span>WEB</span></a>, &nbsp;<a class="reference internal" href="mapfile/reference.html#reference"><span>REFERENCE</span></a>, &nbsp;<a class="reference internal" href="mapfile/scalebar.html#scalebar"><span>SCALEBAR</span></a>, etc.) sont stockés dans un fichier «&nbsp;.ref&nbsp;»&nbsp;:</p>
-<div class="highlight-mapfile"><div class="highlight"><pre><span></span><span class="k">MAP</span>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">MAP</span>
   <span class="k">NAME</span> <span class="s">&quot;base&quot;</span>
   <span class="c">#</span>
   <span class="c"># include reference objects</span>
@@ -680,7 +664,7 @@ using overlaid <cite>STYLE</cite> objects</li>
 <div class="section" id="get-mapserver-running">
 <h3>Avoir un Mapserver fonctionnel<a class="headerlink" href="#get-mapserver-running" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Vous pouvez tester si MapServer fonctionne en lançant l&#8217;exécutable Mapserver (<code class="docutils literal"><span class="pre">mapserv</span></code>) avec le paramètre -v dans la ligne de commande (./mapserv -v). En fonction de votre configuration, la sortie devrait ressembler à quelque chose comme ceci&nbsp;:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>MapServer version 6.0.1 OUTPUT=GIF OUTPUT=PNG OUTPUT=JPEG
+<div class="highlight-python"><div class="highlight"><pre>MapServer version 6.0.1 OUTPUT=GIF OUTPUT=PNG OUTPUT=JPEG
 SUPPORTS=PROJ SUPPORTS=AGG SUPPORTS=FREETYPE SUPPORTS=ICONV
 SUPPORTS=WMS_SERVER INPUT=SHAPEFILE
 </pre></div>
@@ -909,8 +893,8 @@ correctly modified the demo files.</p>
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

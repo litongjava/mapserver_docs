@@ -130,23 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Навигация</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="Алфавитный указатель"
-             accesskey="I">указатель</a></li>
-        <li class="right" >
-          <a href="ms-rfc-40.html" title="MS RFC 40: Support Label Text Transformations"
-             accesskey="N">вперёд</a> |</li>
-        <li class="right" >
-          <a href="ms-rfc-38.html" title="MS RFC 38: Native Microsoft SQL Server 2008 Driver for MapServer"
-             accesskey="P">назад</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Development</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Request for Comments</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -181,7 +164,7 @@ through WMS GetMap request using the STYLES parameter or through the
 <p>Using named styles, the WMS client has the ability to render a specified layer
 using styles predefined by the WMS server.</p>
 <p>Example of this would be:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>http://..../mapserv.cgi?Request=GetMap&amp;....&amp;LAYERS=Rivers,Roads,Houses&amp;STYLES=CenterLine,CenterLine,Outline
+<div class="highlight-python"><div class="highlight"><pre>http://..../mapserv.cgi?Request=GetMap&amp;....&amp;LAYERS=Rivers,Roads,Houses&amp;STYLES=CenterLine,CenterLine,Outline
 
 
 &lt;StyledLayerDescriptorversion=&quot;1.0.0&quot;&gt;
@@ -212,7 +195,7 @@ layer and be able to switch between them.</p>
 the concept of group names at the class object level and have at a layer level
 a parameter that can be used to specify the classes to use. Something like
 this is what is proposed:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>LAYER
+<div class="highlight-python"><div class="highlight"><pre>LAYER
  ...
  CLASSGROUP &quot;group1&quot;
  ...
@@ -269,7 +252,7 @@ not have the GROUP set, the current behavior (returning the STYLE element with
 the &#8216;default&#8217; name) will be kept. If one or more classes have the GROUP set,
 It is proposed to output something like this for each &#8220;group&#8221;:</li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;Style&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;Style&gt;
       &lt;Name&gt;group1&lt;/Name&gt;
       &lt;Title&gt;group1&lt;/Title&gt;
       &lt;LegendURL width=&quot;20&quot; height=&quot;10&quot;&gt;
@@ -310,7 +293,7 @@ available</li>
 </div>
 <div class="section" id="files-affected">
 <h2>Files Affected<a class="headerlink" href="#files-affected" title="Ссылка на этот заголовок">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">maplexer</span><span class="o">.</span><span class="n">l</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">maplexer</span><span class="o">.</span><span class="n">l</span>
 <span class="n">mapserver</span><span class="o">.</span><span class="n">h</span>
 <span class="n">mapfile</span><span class="o">.</span><span class="n">h</span>
 <span class="n">mapfile</span><span class="o">.</span><span class="n">c</span>
@@ -413,8 +396,8 @@ through a GetMap request</p>
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 

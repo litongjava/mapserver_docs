@@ -130,23 +130,6 @@
 </table>
 
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="union.html" title="Couche union"
-             accesskey="N">suivant</a> |</li>
-        <li class="right" >
-          <a href="symbology/examples.html" title="Exemples de symbologie"
-             accesskey="P">précédent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Home</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation de MapServer 7.0.0</a> &raquo;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Mapfile</a> &raquo;</li> 
-      </ul>
-    </div>
   
 
     <div class="document">
@@ -227,7 +210,7 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <dl class="docutils">
 <dt>[date]</dt>
 <dd><p class="first">Renvoie la date (d&#8217;après l&#8217;horloge du serveur web). Le format par défaut est le même que celui utilisé par les logs communs de Apache, qui ressemble à ceci :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>01/Dec/2010:17:34:58 -0800
+<div class="highlight-python"><div class="highlight"><pre>01/Dec/2010:17:34:58 -0800
 </pre></div>
 </div>
 <p>Arguments disponibles :</p>
@@ -235,7 +218,7 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>format=</dt>
 <dd><p class="first">Une chaîne formattée comme supportée par la function standard C strftime(). comme exemple, le format par défaut est défini comme :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>[date format=&quot;%d/%b/%Y:%H:%M:%S %z&quot;]
+<div class="last highlight-python"><div class="highlight"><pre>[date format=&quot;%d/%b/%Y:%H:%M:%S %z&quot;]
 </pre></div>
 </div>
 </dd>
@@ -377,11 +360,11 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>expand=</dt>
 <dd><p class="first">Aggrandit les bornes des étendues d&#8217;une valeur spécifique. Spécifié dans les coordonnées de carte. Par exemple, [mapext] pourrait retourner :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>123456 123456 567890 567890
+<div class="highlight-python"><div class="highlight"><pre>123456 123456 567890 567890
 </pre></div>
 </div>
 <p>et [mapext expand=1000] retournera par conséquent :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>122456 122456 568890 568890
+<div class="last highlight-python"><div class="highlight"><pre>122456 122456 568890 568890
 </pre></div>
 </div>
 </dd>
@@ -390,7 +373,7 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>format=</dt>
 <dd><p class="first">Format des coordonnées.  La valeur par défaut est &#8220;$minx $miny $maxx $maxy&#8221;. Par exemple, pour ajouter des virgules aux coordonnées, vous devriez utiliser :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>[mapext format=&quot;$minx,$miny,$maxx,$maxy&quot;]
+<div class="last highlight-python"><div class="highlight"><pre>[mapext format=&quot;$minx,$miny,$maxx,$maxy&quot;]
 </pre></div>
 </div>
 </dd>
@@ -440,11 +423,11 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>expand=</dt>
 <dd><p class="first">Aggrandit les bornes des étendues d&#8217;une valeur spécifique. Spécifié dans les coordonnées de carte. Par exemple, [rawext] pourrait retourner :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>123456 123456 567890 567890
+<div class="highlight-python"><div class="highlight"><pre>123456 123456 567890 567890
 </pre></div>
 </div>
 <p>et [rawext expand=1000] retournera par conséquent :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>122456 122456 568890 568890
+<div class="last highlight-python"><div class="highlight"><pre>122456 122456 568890 568890
 </pre></div>
 </div>
 </dd>
@@ -453,7 +436,7 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>format=</dt>
 <dd><p class="first">Format des coordonnées.  La valeur par défaut est &#8220;$minx $miny $maxx $maxy&#8221;. Par exemple, pour ajouter des virgules aux coordonnées, vous devriez utiliser :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>[rawext format=&quot;$minx,$miny,$maxx,$maxy&quot;]
+<div class="last highlight-python"><div class="highlight"><pre>[rawext format=&quot;$minx,$miny,$maxx,$maxy&quot;]
 </pre></div>
 </div>
 </dd>
@@ -505,11 +488,11 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>expand=</dt>
 <dd><p class="first">Aggrandit les bornes des étendues d&#8217;une valeur spécifique. Spécifié dans les coordonnées de carte. Par exemple, [mapext_latlon] pourrait retourner :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>123456 123456 567890 567890
+<div class="highlight-python"><div class="highlight"><pre>123456 123456 567890 567890
 </pre></div>
 </div>
 <p>et [mapext_latlon expand=1000] retournera par conséquent :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>122456 122456 568890 568890
+<div class="last highlight-python"><div class="highlight"><pre>122456 122456 568890 568890
 </pre></div>
 </div>
 </dd>
@@ -518,7 +501,7 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>format=</dt>
 <dd><p class="first">Format des coordonnées.  La valeur par défaut est &#8220;$minx $miny $maxx $maxy&#8221;. Par exemple, pour ajouter des virgules aux coordonnées, vous devriez utiliser :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>[mapext_latlon format=&quot;$minx,$miny,$maxx,$maxy&quot;]
+<div class="last highlight-python"><div class="highlight"><pre>[mapext_latlon format=&quot;$minx,$miny,$maxx,$maxy&quot;]
 </pre></div>
 </div>
 </dd>
@@ -565,11 +548,11 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>expand=</dt>
 <dd><p class="first">Aggrandit les bornes des étendues d&#8217;une valeur spécifique. Spécifié dans les coordonnées de carte. Par exemple, [refext] pourrait retourner :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>123456 123456 567890 567890
+<div class="highlight-python"><div class="highlight"><pre>123456 123456 567890 567890
 </pre></div>
 </div>
 <p>et [refext expand=1000] retournera par conséquent :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>122456 122456 568890 568890
+<div class="last highlight-python"><div class="highlight"><pre>122456 122456 568890 568890
 </pre></div>
 </div>
 </dd>
@@ -578,7 +561,7 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>format=</dt>
 <dd><p class="first">Format des coordonnées.  La valeur par défaut est &#8220;$minx $miny $maxx $maxy&#8221;. Par exemple, pour ajouter des virgules aux coordonnées, vous devriez utiliser :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>[refwext format=&quot;$minx,$miny,$maxx,$maxy&quot;]
+<div class="last highlight-python"><div class="highlight"><pre>[refwext format=&quot;$minx,$miny,$maxx,$maxy&quot;]
 </pre></div>
 </div>
 </dd>
@@ -656,11 +639,11 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>expand=</dt>
 <dd><p class="first">Aggrandit les bornes des étendues d&#8217;une valeur spécifique. Spécifié dans les coordonnées de carte. Par exemple, [shpext] pourrait retourner :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>123456 123456 567890 567890
+<div class="highlight-python"><div class="highlight"><pre>123456 123456 567890 567890
 </pre></div>
 </div>
 <p>et [shpext expand=1000] retournera par conséquent :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>122456 122456 568890 568890
+<div class="last highlight-python"><div class="highlight"><pre>122456 122456 568890 568890
 </pre></div>
 </div>
 </dd>
@@ -669,7 +652,7 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 <li><dl class="first docutils">
 <dt>format=</dt>
 <dd><p class="first">Format des coordonnées.  La valeur par défaut est &#8220;$minx $miny $maxx $maxy&#8221;. Par exemple, pour ajouter des virgules aux coordonnées, vous devriez utiliser :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>[shpext format=&quot;$minx,$miny,$maxx,$maxy&quot;]
+<div class="last highlight-python"><div class="highlight"><pre>[shpext format=&quot;$minx,$miny,$maxx,$maxy&quot;]
 </pre></div>
 </div>
 </dd>
@@ -776,11 +759,11 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 </li>
 </ul>
 <p>Comme un exemple simple :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>[shpxy xh=&quot;(&quot; yf=&quot;)&quot;] will result in: (x1 y1),(x2 y2),(x3 y3)
+<div class="highlight-python"><div class="highlight"><pre>[shpxy xh=&quot;(&quot; yf=&quot;)&quot;] will result in: (x1 y1),(x2 y2),(x3 y3)
 </pre></div>
 </div>
 <p>et un exemple plus comliqué de sortie KML pour les multipolygones qui peuvent potentiellement avoir des trous (notez que les paramètres doivent tous être sur une seule ligne) :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>&lt;MultiGeometry&gt;
+<div class="last highlight-python"><div class="highlight"><pre>&lt;MultiGeometry&gt;
     &lt;Point&gt;
       &lt;coordinates&gt;[shplabel proj=epsg:4326 precision=10],0&lt;/coordinates&gt;
     &lt;/Point&gt;
@@ -858,7 +841,7 @@ single quote in a attribute value, just use two quotes (&#8220;&#8221;).</p>
 </li>
 </ul>
 <p>Comme un exemple simple :</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>[item name=&quot;area&quot; precision=&quot;2&quot; commify=&quot;2&quot; format=&quot;Area is $value&quot;]
+<div class="last highlight-python"><div class="highlight"><pre>[item name=&quot;area&quot; precision=&quot;2&quot; commify=&quot;2&quot; format=&quot;Area is $value&quot;]
 </pre></div>
 </div>
 </dd>
@@ -976,7 +959,7 @@ to the user.</p>
 63
 64
 65
-66</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">&lt;!-- MapServer Template --&gt;</span>
+66</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">&lt;!-- MapServer Template --&gt;</span>
 <span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span>
 <span class="cp">       &quot;http://www.w3.org/TR/html4/transitional.dtd&quot;&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -1105,8 +1088,8 @@ to the user.</p>
       &copy;2016, Open Source Geospatial Foundation.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
     </div>
 
