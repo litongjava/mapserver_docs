@@ -5,3 +5,31 @@
 =======================
 Map With A Single Layer
 =======================
+
+
+Live Example
+------------
+
+Results of the tutorial. 
+
+.. raw:: html
+	:file: single_layer.html
+
+Map File
+--------
+
+Map file source for the demo. 
+
+.. literalinclude:: single_layer.map
+	:language: mapfile
+
+..
+	JavaScript
+	----------
+
+	JavaScript source for the demo. 
+
+	.. literalinclude:: single_layer.html
+		:start-after: <body>
+		:end-before: </body>
+		:language: js
