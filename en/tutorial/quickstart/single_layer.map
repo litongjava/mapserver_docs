@@ -7,10 +7,10 @@ MAP
     WEB
         IMAGEPATH "/tmp/"
         METADATA
-            "wms_title"           "WMS Demo Server"
-            "wms_onlineresource"  "http://localhost/tutorial-ol3/mapserv?"
+            "wms_title"           "Map with A Single Layer"
+            "wms_onlineresource"  "http://localhost/cgi-bin/mapserv7?"
             "wms_srs"             "EPSG:4326"
-            "ows_enable_request"  "* !GetFeatureInfo"
+            "ows_enable_request"  "*"
         END
     END
     PROJECTION
@@ -21,11 +21,10 @@ MAP
     LAYER
         NAME 'land'
         TYPE POLYGON
-        STATUS ON
         PROJECTION
             'init=epsg:4326'
         END
-        DATA 'natural_earth/110m_physical/ne_110m_land/ne_10m_land'
+        DATA 'natural_earth/110m_physical/ne_110m_land/ne_10m_land.shp'
         # START OF THE CLASS DEFINITION
         CLASS
             # START OF THE STYLE DEFINITION
@@ -40,4 +39,3 @@ MAP
     END
     # END OF THE LAYER DEFINITION 
 END
-
