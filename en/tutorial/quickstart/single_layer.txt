@@ -5,16 +5,16 @@ Map with A Single Layer
 =======================
 
 This first tutorial shows how MapServer can display a dataset on a web page. The layer is
-served as a WMS this stands for Web Map Service, which is a "web-based interoperability service" 
-based on specifications published by the Open Geospatial Consortium (OGC). 
+served as a WMS this stands for Web Map Service, which is a "web-based interoperability service"
+based on specifications published by the Open Geospatial Consortium (OGC).
 
-The data used in this example is a polygon shapefile displaying the world's landmass. 
- 
+The data used in this example is a polygon shapefile displaying the world's landmass.
+
 Live Example
 ------------
 
-Once you have successfully configured MapServer you can update the two text boxes
-below with your own webserver address, and path to your mapfile. 
+Once you have successfully configured your MapServer you can update the two text boxes
+below with your own webserver address, and path to your mapfile.
 
 The results should look the same as below, which is running from a live demo server, with
 the data displayed in an `OpenLayers3 map <http://openlayers.org/>`_
@@ -55,7 +55,7 @@ MAP Object
 Let's look at the keywords (parameters) within the MAP object:
 
 **MAP**
-   Every mapfile must start with the :ref:`MAP <map>` object--the
+   Every mapfile must start with the :ref:`MAP <map>` object -- the
    entire mapfile is the MAP object.
 
 **IMAGETYPE**
@@ -66,12 +66,14 @@ Let's look at the keywords (parameters) within the MAP object:
 **EXTENT**
    This parameter specifies the output extent of our map--the bounding
    box of our initial map.  The EXTENT values are given in this
-   format::
+   format:
+
+::
 
      <Lower Left X> <Lower Left Y> <Upper Right X> <Upper Right Y>
 
-   with spaces separating each value. In this example our data is in geographic 
-   projection so the units are in decimal degrees.      
+with spaces separating each value. In this example our data is in geographic 
+projection so the units are in decimal degrees.
 
 **SIZE**
    This is the size of the image (the map) that MapServer will
