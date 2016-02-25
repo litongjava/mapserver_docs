@@ -10,27 +10,30 @@
         <form>
             <label>
                 Mapserver location:
-                <input id="ms-tutorial-location" type="text"  value="//localhost/tutorial-ol3/mapserv" />
+                <input id="ms-tutorial-location" type="text" value="http://demo.mapserver.org/cgi-bin/wms" />
             </label>
+<!--
             <label>
                 Map file path:
-                <input id="mapfile-path" type="text" value="single-layer.map" />
+                <input id="mapfile-path" type="text" value="single_layer.map" />
             </label>
+-->
 
             <button id="validate-btn" type="submit">Validate</button>
         </form>
-        <div id="map" class="map"></div>
+        <div id="map" class="map" style="margin: auto; height: 300px; width: 800px"></div>
         <script>
-            map = new ol.Map({
+            var map = new ol.Map({
                 target: 'map',
                 view: new ol.View({
-                    center: [0, 0],
+                    center: [-4.5703125, 37.265625],
                     zoom: 2,
                     projection: 'EPSG:4326'
                 })
             });
 
-            document.getElementById('validate-btn').addEventListener('click', updateLayers);
+            // Temporary disable this to use old demo.mapserver.org
+            //document.getElementById('validate-btn').addEventListener('click', updateLayers);
             updateLayers();
 
             function updateLayers(e) {
@@ -41,14 +44,18 @@
                 if (!msAddress.endsWith('?')) {
                     msAddress += '?';
                 }
-                var mapfilePath = document.getElementById('mapfile-path').value;
+                // Temporary set it to empty to use old demo.mapserver.org page
+                //var mapfilePath = document.getElementById('mapfile-path').value;
+                //mapfilePath = 'MAP=' + mapfilePath;
+                var mapfilePath = '';
                 map.getLayers().getArray().forEach(function (layer) {
                     map.removeLayer(layer);
                 });
                 var layer = new ol.layer.Tile({
                     source: new ol.source.TileWMS({
-                        url: msAddress + 'MAP=' + mapfilePath,
-                        params: {LAYERS: 'land', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
+                        url: msAddress + mapfilePath,
+                        // Must switch back to land once new demo is online.
+                        params: {LAYERS: 'bluemarble', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
                         serverType: 'mapserver'
                     })
                 });
