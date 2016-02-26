@@ -1,7 +1,0 @@
-:orphan:
-
-.. _qs_browser:
-
-============================
-Viewing the Map in a Browser
-============================

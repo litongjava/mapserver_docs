@@ -137,17 +137,16 @@
 <span id="qs-two-layers-map"></span><h1>Two Layers Map File<a class="headerlink" href="#two-layers-map-file" title="Permalink naar deze titel">¶</a></h1>
 <div class="highlight-mapfile"><div class="highlight"><pre><span class="k">MAP</span>
     <span class="k">IMAGETYPE</span> <span class="nb">png</span>
-    <span class="k">SIZE</span> <span class="mi">800</span> <span class="mi">800</span>
+    <span class="k">SIZE</span> <span class="mi">500</span> <span class="mi">300</span>
     <span class="k">UNITS</span> <span class="nb">DD</span>
     <span class="k">EXTENT</span> <span class="p">-</span><span class="mi">180</span> <span class="p">-</span><span class="mi">90</span> <span class="mi">180</span> <span class="mi">90</span>
-    <span class="k">SHAPEPATH</span> <span class="s">&quot;./data/&quot;</span>
     <span class="k">WEB</span>
         <span class="k">IMAGEPATH</span> <span class="s">&quot;/tmp/&quot;</span>
         <span class="k">METADATA</span>
-            <span class="s">&quot;wms_title&quot;</span>           <span class="s">&quot;WMS Demo Server&quot;</span>
-            <span class="s">&quot;wms_onlineresource&quot;</span>  <span class="s">&quot;http://localhost/tutorial-ol3/mapserv?&quot;</span>
+            <span class="s">&quot;wms_title&quot;</span>           <span class="s">&quot;Map with two layers&quot;</span>
+            <span class="s">&quot;wms_onlineresource&quot;</span>  <span class="s">&quot;http://demo.mapserver.org/cgi-bin/mapserv7?&quot;</span>
             <span class="s">&quot;wms_srs&quot;</span>             <span class="s">&quot;EPSG:4326&quot;</span>
-            <span class="s">&quot;ows_enable_request&quot;</span>  <span class="s">&quot;* !GetFeatureInfo&quot;</span>
+            <span class="s">&quot;ows_enable_request&quot;</span>  <span class="s">&quot;*&quot;</span>
         <span class="k">END</span>
     <span class="k">END</span>
     <span class="k">PROJECTION</span>
@@ -170,8 +169,10 @@
         <span class="k">END</span>
     <span class="k">END</span>
 
+    <span class="c"># START OCEAN LAYER</span>
     <span class="k">LAYER</span>
         <span class="k">NAME</span> <span class="s">&#39;ocean&#39;</span>
+        <span class="k">TYPE</span> <span class="nb">POLYGON</span>
         <span class="k">PROJECTION</span>
             <span class="s">&#39;init=epsg:4326&#39;</span>
         <span class="k">END</span>
@@ -182,6 +183,7 @@
             <span class="k">END</span>
         <span class="k">END</span>
     <span class="k">END</span>
+    <span class="c"># END OCEAN LAYER</span>
 <span class="k">END</span>
 </pre></div>
 </div>

@@ -35,7 +35,15 @@ layer object must have:
 - a ``DATA`` attribute which value is the path to the shapefile you want to use.
 - a ``CLASS`` object which describes how the data must be rendered.
 
+To add the ocean layer, append in the map object the following lines:
+
+.. literalinclude:: two_layers.map
+   :language: mapfile
+   :start-after: # START OCEAN LAYER
+   :end-before: # END OCEAN LAYER
+   :dedent: 4
+
 
 ----
 
-:ref:`Back to tutorial index <tutorial>` | :ref:`Back to previous tutorial <qs_single_layer>` | :ref:`Proceed to next tutorial <qs_two_layers>`
+:ref:`Back to tutorial index <tutorial>` | :ref:`Back to previous tutorial <qs_single_layer>` | :ref:`Proceed to next tutorial <qs_test_mapfiles>`

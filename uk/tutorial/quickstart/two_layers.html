@@ -28,7 +28,7 @@
     <link rel="copyright" title="Авторські права" href="../../copyright.html" />
     <link rel="top" title="MapServer 7.0.0 documentation" href="../../index.html" />
     <link rel="up" title="MapServer Tutorials" href="../index.html" />
-    <link rel="next" title="3. Viewing the Map in a Browser" href="browser.html" />
+    <link rel="next" title="3. Testing your Mapfiles with shp2img" href="test_mapfiles.html" />
     <link rel="prev" title="1. Map with A Single Layer" href="single_layer.html" />
    
   
@@ -228,8 +228,24 @@ so it can draw it correctly.</li>
 <li>a <code class="docutils literal"><span class="pre">DATA</span></code> attribute which value is the path to the shapefile you want to use.</li>
 <li>a <code class="docutils literal"><span class="pre">CLASS</span></code> object which describes how the data must be rendered.</li>
 </ul>
+<p>To add the ocean layer, append in the map object the following lines:</p>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
+    <span class="k">NAME</span> <span class="s">&#39;ocean&#39;</span>
+    <span class="k">TYPE</span> <span class="nb">POLYGON</span>
+    <span class="k">PROJECTION</span>
+        <span class="s">&#39;init=epsg:4326&#39;</span>
+    <span class="k">END</span>
+    <span class="k">DATA</span> <span class="s">&#39;natural_earth/110m_physical/ne_110m_ocean/ne_10m_ocean&#39;</span>
+    <span class="k">CLASS</span>
+        <span class="k">STYLE</span>
+            <span class="k">COLOR</span> <span class="mi">198</span> <span class="mi">226</span> <span class="mi">242</span>
+        <span class="k">END</span>
+    <span class="k">END</span>
+<span class="k">END</span>
+</pre></div>
+</div>
 <hr class="docutils" />
-<p><a class="reference internal" href="../index.html#tutorial"><span>Back to tutorial index</span></a> | <a class="reference internal" href="single_layer.html#qs-single-layer"><span>Back to previous tutorial</span></a> | <a class="reference internal" href="#qs-two-layers"><span>Proceed to next tutorial</span></a></p>
+<p><a class="reference internal" href="../index.html#tutorial"><span>Back to tutorial index</span></a> | <a class="reference internal" href="single_layer.html#qs-single-layer"><span>Back to previous tutorial</span></a> | <a class="reference internal" href="test_mapfiles.html#qs-test-mapfiles"><span>Proceed to next tutorial</span></a></p>
 </div>
 </div>
 

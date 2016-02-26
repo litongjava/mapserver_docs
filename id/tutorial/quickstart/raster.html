@@ -30,7 +30,7 @@
     <link rel="top" title="MapServer 7.0.0 documentation" href="../../index.html" />
     <link rel="up" title="MapServer Tutorials" href="../index.html" />
     <link rel="next" title="7. Using Different Datasources" href="datasources.html" />
-    <link rel="prev" title="5. Symbolizing Data" href="symbolizing.html" />
+    <link rel="prev" title="5. Labelling Data" href="labelling.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -139,6 +139,98 @@
             
   <div class="section" id="adding-a-raster-layer">
 <span id="qs-raster"></span><h1>6. Adding a Raster Layer<a class="headerlink" href="#adding-a-raster-layer" title="Link permanen untuk headline ini">¶</a></h1>
+<p>In this tutorial, you will learn how to add a raster layer to your map.</p>
+<div class="section" id="live-example">
+<h2>6.1. Live Example<a class="headerlink" href="#live-example" title="Link permanen untuk headline ini">¶</a></h2>
+<p>The results should look the same as below, which is running from a live demo
+server, with the data displayed in an <a class="reference external" href="http://openlayers.org/">OpenLayers3 map</a></p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mapserver OL3 viewer</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="http://openlayers.org/en/v3.14.0/css/ol.css" type="text/css">
+        <script src="http://openlayers.org/en/v3.14.0/build/ol.js"></script>
+    </head>
+    <body>
+        <form>
+            <label>
+                Mapserver location:
+                <input id="ms-tutorial-location" type="text" value="http://localhost/tutorial-ol3/mapserv" />
+            </label>
+            <label>
+                Map file path:
+                <input id="mapfile-path" type="text" value="/home/jenselme/Work/forks/mapserver-docs/en/tutorial/quickstart/raster.map" />
+            </label>
+
+            <button id="validate-btn" type="submit">Validate</button>
+        </form>
+        <div id="map" class="map" style="margin: auto; height: 300px; width: 800px"></div>
+        <script>
+            var map = new ol.Map({
+                target: 'map',
+                view: new ol.View({
+                    center: [-4.5703125, 37.265625],
+                    zoom: 2,
+                    projection: 'EPSG:4326'
+                })
+            });
+
+            document.getElementById('validate-btn').addEventListener('click', updateLayers);
+            updateLayers();
+
+            function updateLayers(e) {
+                if (e) {
+                    e.preventDefault();
+                }
+                var msAddress = document.getElementById('ms-tutorial-location').value;
+                if (!msAddress.endsWith('?')) {
+                    msAddress += '?';
+                }
+                var mapfilePath = document.getElementById('mapfile-path').value;
+                mapfilePath = 'MAP=' + mapfilePath;
+                map.getLayers().getArray().forEach(function (layer) {
+                    map.removeLayer(layer);
+                });
+                var layer = new ol.layer.Tile({
+                    source: new ol.source.TileWMS({
+                        url: msAddress + mapfilePath,
+                        params: {LAYERS: 'raster', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
+                        serverType: 'mapserver'
+                    })
+                });
+                map.addLayer(layer);
+                layer = new ol.layer.Tile({
+                    source: new ol.source.TileWMS({
+                        url: msAddress + mapfilePath,
+                        params: {LAYERS: 'land', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
+                        serverType: 'mapserver'
+                    })
+                });
+                map.addLayer(layer);
+            }
+        </script>
+    </body>
+</html>
+</div>
+<div class="section" id="raster">
+<h2>6.2. Raster<a class="headerlink" href="#raster" title="Link permanen untuk headline ini">¶</a></h2>
+<p>Your mapfile should look like that: <a class="reference internal" href="raster.map.html#qs-raster-map"><span>raster.map</span></a>.</p>
+<p>You need to add a layer of type <code class="docutils literal"><span class="pre">RASTER</span></code>:</p>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
+    <span class="k">NAME</span> <span class="s">&quot;raster&quot;</span>
+    <span class="k">TYPE</span> <span class="nb">RASTER</span>
+    <span class="k">STATUS</span> <span class="nb">ON</span>
+    <span class="k">PROJECTION</span>
+        <span class="s">&#39;init=epsg:4326&#39;</span>
+    <span class="k">END</span>
+    <span class="k">DATA</span> <span class="s">&#39;bluemarble.tif&#39;</span>
+<span class="k">END</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><a class="reference internal" href="../index.html#tutorial"><span>Back to tutorial index</span></a> | <a class="reference internal" href="labelling.html#qs-labelling"><span>Back to previous tutorial</span></a> | <a class="reference internal" href="datasources.html#qs-datasources"><span>Proceed to next tutorial</span></a></p>
+</div>
 </div>
 
 
@@ -156,6 +248,15 @@
 <a href="../../documentation.html" title="Documentation">Documentation</a><br>
 <a href="../../faq.html" title="FAQ">FAQ</a>
 </p>
+  <h3>Current Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">6. Adding a Raster Layer</a><ul>
+<li><a class="reference internal" href="#live-example">6.1. Live Example</a></li>
+<li><a class="reference internal" href="#raster">6.2. Raster</a></li>
+</ul>
+</li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3>Pencarian cepat</h3>
     <form class="search" action="../../search.html" method="get">
