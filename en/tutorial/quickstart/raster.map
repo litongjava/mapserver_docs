@@ -1,0 +1,45 @@
+MAP
+    IMAGETYPE png
+    SIZE 500 300
+    UNITS DD
+    EXTENT -180 -90 180 90
+    WEB
+        IMAGEPATH "/tmp/"
+        METADATA
+            "wms_title"           "Map with A Single Layer"
+            "wms_onlineresource"  "http://demo.mapserver.org/cgi-bin/mapserv7?"
+            "wms_srs"             "EPSG:4326"
+            "ows_enable_request"  "*"
+        END
+    END
+    PROJECTION
+        "init=epsg:4326"
+    END
+
+    LAYER
+        NAME 'land'
+        TYPE POLYGON
+        PROJECTION
+            'init=epsg:4326'
+        END
+        DATA 'natural_earth/110m_physical/ne_110m_land/ne_10m_land'
+        CLASS
+            STYLE
+                OUTLINECOLOR 255 255 0
+                WIDTH 1.5
+            END
+        END
+    END
+
+    # START RASTER LAYER
+    LAYER
+        NAME "raster"
+        TYPE RASTER
+        STATUS ON
+        PROJECTION
+            'init=epsg:4326'
+        END
+        DATA 'bluemarble.tif'
+    END
+    # END RASTER LAYER
+END
