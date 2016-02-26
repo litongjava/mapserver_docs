@@ -6,7 +6,7 @@ MAP
     WEB
         IMAGEPATH "/tmp/"
         METADATA
-            "wms_title"           "Map with two layers"
+            "wms_title"           "WMS Demo Server"
             "wms_onlineresource"  "http://demo.mapserver.org/cgi-bin/mapserv7?"
             "wms_srs"             "EPSG:4326"
             "ows_enable_request"  "*"
@@ -19,6 +19,7 @@ MAP
     LAYER
         NAME 'land'
         TYPE POLYGON
+        STATUS ON
         PROJECTION
             'init=epsg:4326'
         END
@@ -36,6 +37,7 @@ MAP
     LAYER
         NAME 'ocean'
         TYPE POLYGON
+        STATUS ON
         PROJECTION
             'init=epsg:4326'
         END

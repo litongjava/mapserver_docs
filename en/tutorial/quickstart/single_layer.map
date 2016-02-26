@@ -1,13 +1,13 @@
 MAP
     IMAGETYPE png
-    SIZE 800 800
+    SIZE 500 300
     UNITS DD
     EXTENT -180 -90 180 90
     WEB
         IMAGEPATH "/tmp/"
         METADATA
             "wms_title"           "Map with A Single Layer"
-            "wms_onlineresource"  "http://localhost/cgi-bin/mapserv7?"
+            "wms_onlineresource"  "http://demo.mapserver.org/cgi-bin/mapserv7?"
             "wms_srs"             "EPSG:4326"
             "ows_enable_request"  "*"
         END
@@ -16,7 +16,7 @@ MAP
         "init=epsg:4326"
     END
 
-    # START OF THE LAYER DEFINITION 
+    # START OF THE LAYER DEFINITION
     LAYER
         NAME 'land'
         TYPE POLYGON
@@ -36,5 +36,5 @@ MAP
         END
         # END OF THE CLASS DEFINITION
     END
-    # END OF THE LAYER DEFINITION 
+    # END OF THE LAYER DEFINITION
 END
