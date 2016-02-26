@@ -1,0 +1,87 @@
+MAP
+    IMAGETYPE png
+    SIZE 500 300
+    UNITS DD
+    EXTENT -180 -90 180 90
+    WEB
+        IMAGEPATH "/tmp/"
+        METADATA
+            "wms_title"           "Map with two layers"
+            "wms_onlineresource"  "http://demo.mapserver.org/cgi-bin/mapserv7?"
+            "wms_srs"             "EPSG:4326"
+            "ows_enable_request"  "*"
+        END
+    END
+    PROJECTION
+        "init=epsg:4326"
+    END
+
+    # START OF SYMBOL DEFINITION
+    SYMBOL
+        # Symbol name (referenced in STYLEs)
+        NAME 'circle'
+        TYPE ellipse # Type of symbol
+        # START SYMBOL GEOMETRY
+        POINTS
+            1 1
+        END
+        # END SYMBOL GEOMETRY POINTS
+        # The symbol should be filled
+        FILLED true
+    END
+    # END OF SYMBOL
+
+    LAYER
+        NAME 'land'
+        TYPE POLYGON
+        STATUS ON
+        PROJECTION
+            'init=epsg:4326'
+        END
+        DATA 'natural_earth/110m_physical/ne_110m_land/ne_10m_land'
+        CLASS
+            STYLE
+                COLOR 238 236 223
+                OUTLINECOLOR 255 255 0
+                WIDTH 1.5
+            END
+        END
+    END
+
+    LAYER
+        NAME 'ocean'
+        TYPE POLYGON
+        STATUS ON
+        PROJECTION
+            'init=epsg:4326'
+        END
+        DATA 'natural_earth/110m_physical/ne_110m_ocean/ne_10m_ocean'
+        CLASS
+            STYLE
+                COLOR 198 226 242
+            END
+        END
+    END
+
+    # START PLACES LAYER
+    LAYER
+        NAME 'places'
+        TYPE POINT
+        STATUS ON
+        PROJECTION
+            'init=epsg:4326'
+        END
+        DATA 'natural_earth/110m_physical/ne_110m_places/ne_110m_populated_places'
+        CLASS
+            STYLE
+                # Choose the symbol to use. This must correspond to the NAME of a SYMBOL object.
+                SYMBOL 'circle'
+                # Set the color in which the symbol will be filled
+                COLOR 0 0 0
+                # Set the size of the symbol
+                SIZE 8
+            END
+        END
+    END
+    # END PLACES LAYER
+END

@@ -107,4 +107,4 @@ You must see the following message, telling you there is a problem at line 9:
 
 ----
 
-:ref:`Back to tutorial index <tutorial>` | :ref:`Back to previous tutorial <qs_two_layers>` | :ref:`Proceed to next tutorial <qs_labelling>`
+:ref:`Back to tutorial index <tutorial>` | :ref:`Back to previous tutorial <qs_two_layers>` | :ref:`Proceed to next tutorial <qs_symbolizing>`

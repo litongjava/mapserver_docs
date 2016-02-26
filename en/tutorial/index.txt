@@ -32,8 +32,8 @@ Quickstart - Your First MapFile
    quickstart/single_layer
    quickstart/two_layers
    quickstart/test_mapfiles
-   quickstart/labelling
    quickstart/symbolizing
+   quickstart/labelling
    quickstart/raster
    quickstart/datasources
    quickstart/projections

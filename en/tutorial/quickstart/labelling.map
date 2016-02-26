@@ -1,0 +1,98 @@
+MAP
+    IMAGETYPE png
+    SIZE 500 300
+    UNITS DD
+    EXTENT -180 -90 180 90
+    # Tell MapServer how to look for the fonts
+    FONTSET 'fonts.txt'
+    WEB
+        IMAGEPATH "/tmp/"
+        METADATA
+            "wms_title"           "Map with two layers"
+            "wms_onlineresource"  "http://demo.mapserver.org/cgi-bin/mapserv7?"
+            "wms_srs"             "EPSG:4326"
+            "ows_enable_request"  "*"
+        END
+    END
+    PROJECTION
+        "init=epsg:4326"
+    END
+
+    SYMBOL
+        NAME 'circle'
+        TYPE ellipse
+        POINTS
+            1 1
+        END
+        FILLED true
+    END
+
+    LAYER
+        NAME 'land'
+        TYPE POLYGON
+        STATUS ON
+        PROJECTION
+            'init=epsg:4326'
+        END
+        DATA 'natural_earth/110m_physical/ne_110m_land/ne_10m_land'
+        CLASS
+            STYLE
+                COLOR 238 236 223
+                OUTLINECOLOR 255 255 0
+                WIDTH 1.5
+            END
+        END
+    END
+
+    LAYER
+        NAME 'ocean'
+        TYPE POLYGON
+        STATUS ON
+        PROJECTION
+            'init=epsg:4326'
+        END
+        DATA 'natural_earth/110m_physical/ne_110m_ocean/ne_10m_ocean'
+        CLASS
+            STYLE
+                COLOR 198 226 242
+            END
+        END
+    END
+
+    # START PLACES LAYER
+    LAYER
+        NAME 'places'
+        TYPE POINT
+        STATUS ON
+        PROJECTION
+            'init=epsg:4326'
+        END
+        DATA 'natural_earth/110m_physical/ne_110m_places/ne_110m_populated_places'
+        # The name of the column containing the label in the shapefile
+        LABELITEM 'NAME'
+        CLASS
+            STYLE
+                COLOR 0 0 0
+                SYMBOL 'circle'
+                SIZE 8
+            END
+            # START LABEL
+            LABEL
+                # The fill color of the text
+                COLOR  150 150 150
+                # The color of the boder of the text
+                OUTLINECOLOR 255 255 255
+                # The name of the font used to write the label. It must exists in fonts.txt
+                FONT arial
+                # The type of the font
+                TYPE truetype
+                # The size of the label
+                SIZE 6
+                # Let MapServer place the label in a "smart" way: not on the dot of the city.
+                POSITION AUTO
+            END
+            # END LABEL
+        END
+    END
+    # END PLACES LAYER
+END
