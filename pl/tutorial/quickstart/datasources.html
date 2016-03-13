@@ -139,6 +139,183 @@
             
   <div class="section" id="using-different-datasources">
 <span id="qs-datasources"></span><h1>7. Using Different Datasources<a class="headerlink" href="#using-different-datasources" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<p>MapServer supports many vector data formats other than ESRI&#8217;s Shapefile format
+(the format we used until now) format. This support possible because of the OGR
+library (part of the GDAL software package).  Please visit the GDAL project web
+site at <a class="reference external" href="http://gdal.osgeo.org/">http://gdal.osgeo.org/</a> and read <a class="reference external" href="http://gdal.osgeo.org/ogr/">http://gdal.osgeo.org/ogr/</a> to
+learn more about the different vector formats MapServer supports. In addition,
+Jeff McKenna and Tyler Mitchell have written a detailed <a class="reference internal" href="../../input/vector/index.html#vector"><span>guide to using
+vector data for MapServer</span></a>.</p>
+<div class="section" id="live-example">
+<h2>7.1. Live Example<a class="headerlink" href="#live-example" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Once you have successfully configured your MapServer you can update the two text boxes
+below with your own webserver address, and path to your mapfile.</p>
+<p>The results should look the same as below, which is running from a live demo server, with
+the data displayed in an <a class="reference external" href="http://openlayers.org/">OpenLayers3 map</a></p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mapserver OL3 viewer</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="http://openlayers.org/en/v3.14.0/css/ol.css" type="text/css">
+        <script src="http://openlayers.org/en/v3.14.0/build/ol.js"></script>
+    </head>
+    <body>
+        <form>
+            <label>
+                Mapserver location:
+                <input id="ms-tutorial-location" type="text" value="http://mapserverdocs.local/tutorial-ol3/mapserv" />
+            </label>
+            <label>
+                Map file path:
+                <input id="mapfile-path" type="text" value="/home/jenselme/Work/forks/mapserver-docs/en/tutorial/quickstart/datasources_spatialite.map" />
+            </label>
+
+            <button id="validate-btn" type="submit">Validate</button>
+        </form>
+        <div id="map" class="map" style="margin: auto; height: 300px; width: 800px"></div>
+        <script>
+            var map = new ol.Map({
+                target: 'map',
+                view: new ol.View({
+                    center: [-4.5703125, 37.265625],
+                    zoom: 2,
+                    projection: 'EPSG:4326'
+                })
+            });
+
+            document.getElementById('validate-btn').addEventListener('click', updateLayers);
+            updateLayers();
+
+            function updateLayers(e) {
+                if (e) {
+                    e.preventDefault();
+                }
+                var msAddress = document.getElementById('ms-tutorial-location').value;
+                if (!msAddress.endsWith('?')) {
+                    msAddress += '?';
+                }
+                var mapfilePath = document.getElementById('mapfile-path').value;
+                mapfilePath = 'MAP=' + mapfilePath;
+                map.getLayers().getArray().forEach(function (layer) {
+                    map.removeLayer(layer);
+                });
+                var layer = new ol.layer.Tile({
+                    source: new ol.source.TileWMS({
+                        url: msAddress + mapfilePath,
+                        params: {LAYERS: 'ocean', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
+                        serverType: 'mapserver'
+                    })
+                });
+                map.addLayer(layer);
+                layer = new ol.layer.Tile({
+                    source: new ol.source.TileWMS({
+                        url: msAddress + mapfilePath,
+                        params: {LAYERS: 'countries', TILED: true, CRS: 'epsg:4326', VERSION: '1.3.0'},
+                        serverType: 'mapserver'
+                    })
+                });
+                map.addLayer(layer);
+            }
+        </script>
+    </body>
+</html>
+</div>
+<div class="section" id="shapefile">
+<h2>7.2. Shapefile<a class="headerlink" href="#shapefile" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>The Shapefife format is the data format we used until now. It is one file
+containing the data ending with the <code class="docutils literal"><span class="pre">shp</span></code> extension. To use a Shapefile, you
+must pass the path to it to the <code class="docutils literal"><span class="pre">DATA</span></code> keyword. You can provide absolute paths
+(i.e. &#8220;/ms4w/apps/tutorial/data&#8221; or &#8220;C:/ms4w/apps/tutorial/data&#8221;) or paths
+relative to your mapfile&#8217;s location (in this example, you&#8217;d use &#8221;../data&#8221;). This
+path doesn&#8217;t have to be web accessible, and probably shouldn&#8217;t be unless you
+want anyone to download your raw data. It has nothing directly to do with the
+web so don&#8217;t even think of URLs here.  Just make sure that the user running the
+web server (usually &#8220;nobody&#8221; or &#8220;apache&#8221; in the *nix world) can READ the data
+in the Shapefile.</p>
+</div>
+<div class="section" id="spatialite">
+<h2>7.3. Spatialite<a class="headerlink" href="#spatialite" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Spatialite is the spatial extension to Sqlite, a lite SQL database that can be
+embed in an application. To add a layer from a spatialite database, use the
+layer object below:</p>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
+    <span class="k">NAME</span> <span class="s">&#39;countries&#39;</span>
+    <span class="k">TYPE</span> <span class="nb">POLYGON</span>
+    <span class="k">STATUS</span> <span class="nb">ON</span>
+    <span class="k">PROJECTION</span>
+        <span class="s">&#39;init=epsg:4326&#39;</span>
+    <span class="k">END</span>
+    <span class="k">CONNECTIONTYPE</span> <span class="nb">OGR</span>
+    <span class="k">CONNECTION</span> <span class="s">&#39;natural_earth/110m_physical/countries.sqlite&#39;</span>
+    <span class="k">DATA</span> <span class="s">&#39;countries&#39;</span>
+    <span class="k">CLASS</span>
+        <span class="k">STYLE</span>
+            <span class="k">OUTLINECOLOR</span> <span class="mi">255</span> <span class="mi">255</span> <span class="mi">0</span>
+            <span class="k">WIDTH</span> <span class="mf">1.5</span>
+        <span class="k">END</span>
+    <span class="k">END</span>
+<span class="k">END</span>
+</pre></div>
+</div>
+<p>As you see, to connect to a spatialite database, MapServer needs:</p>
+<ul class="simple">
+<li>the type of the connection specified by <code class="docutils literal"><span class="pre">CONNECTIONTYPE</span> <span class="pre">OGR</span></code>. <code class="docutils literal"><span class="pre">OGR</span></code> means
+MapServer relies on GDAL to read the data.</li>
+<li>the location of the sqlite file given as a parameter to the <code class="docutils literal"><span class="pre">CONNECTION</span></code>
+keyword. You can provide absolute paths (i.e. &#8220;/ms4w/apps/tutorial/data&#8221; or
+&#8220;C:/ms4w/apps/tutorial/data&#8221;) or paths relative to your mapfile&#8217;s location (in
+this example, you&#8217;d use &#8221;../data&#8221;). This path doesn&#8217;t have to be web
+accessible, and probably shouldn&#8217;t be unless you want anyone to download your
+raw data. It has nothing directly to do with the web so don&#8217;t even think of
+URLs here.  Just make sure that the user running the web server (usually
+&#8220;nobody&#8221; or &#8220;apache&#8221; in the *nix world) can READ the data in the Sqlite
+database.</li>
+<li>the name of the table in which the relevant data is located. You must pass
+this name to the <code class="docutils literal"><span class="pre">DATA</span></code> keyword.</li>
+</ul>
+<p>You can find more information on the <a class="reference internal" href="../../input/vector/sqlite.html#sqlite"><span>MapServer Sqlite documentation page</span></a>.</p>
+</div>
+<div class="section" id="postgis">
+<h2>7.4. PostGIS<a class="headerlink" href="#postgis" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Postgis is the spatial extension for PostgresQL. To test this section, you will
+need a running PostgresQL server with the PostGIS extension. To add a POSTGIS
+layer, use the layer object below:</p>
+<div class="highlight-mapfile"><div class="highlight"><pre><span class="k">LAYER</span>
+    <span class="k">NAME</span> <span class="s">&#39;countries&#39;</span>
+    <span class="k">TYPE</span> <span class="nb">POLYGON</span>
+    <span class="k">STATUS</span> <span class="nb">ON</span>
+    <span class="k">PROJECTION</span>
+        <span class="s">&#39;init=epsg:4326&#39;</span>
+    <span class="k">END</span>
+    <span class="k">CONNECTIONTYPE</span> <span class="nb">POSTGIS</span>
+    <span class="k">CONNECTION</span> <span class="s">&#39;dbname=ms_demo user=ms_demo password=azerty&#39;</span>
+    <span class="k">DATA</span> <span class="s">&#39;geom from countries&#39;</span>
+    <span class="k">CLASS</span>
+        <span class="k">STYLE</span>
+            <span class="k">OUTLINECOLOR</span> <span class="mi">255</span> <span class="mi">255</span> <span class="mi">0</span>
+            <span class="k">WIDTH</span> <span class="mf">1.5</span>
+        <span class="k">END</span>
+    <span class="k">END</span>
+<span class="k">END</span>
+</pre></div>
+</div>
+<p>As you can see, to connect to a postgis database, MapServer needs:</p>
+<ul class="simple">
+<li>the type of the connection specified by <code class="docutils literal"><span class="pre">CONNECTIONTYPE</span> <span class="pre">POSTGIS</span></code>.</li>
+<li>the connection information to connect to the database given as a parameter to
+the <code class="docutils literal"><span class="pre">CONNECTION</span></code> keyword. You must specify the <code class="docutils literal"><span class="pre">dbname</span></code> (name of your
+database), <code class="docutils literal"><span class="pre">user</span></code> (name of the user used to connect to the database). You
+will most likely have to specify the <code class="docutils literal"><span class="pre">password</span></code> for the user.</li>
+<li>a SQL like query that returns the row with the data you want to display. Its more
+minimal expression is <code class="docutils literal"><span class="pre">&lt;column_name&gt;</span> <span class="pre">FROM</span> <span class="pre">&lt;table_name&gt;</span></code> where you must
+replace <code class="docutils literal"><span class="pre">&lt;column_name&gt;</span></code> by the name of the column holding your spatial data
+(here <code class="docutils literal"><span class="pre">geom</span></code>) and <code class="docutils literal"><span class="pre">&lt;table_name&gt;</span></code> by the name of the table (here
+<code class="docutils literal"><span class="pre">countries</span></code>).</li>
+</ul>
+<p>You can find more information on the <a class="reference internal" href="../../input/vector/postgis.html#input-postgis"><span>MapServer postigis documentation page</span></a>.</p>
+<p><a class="reference internal" href="../index.html#tutorial"><span>Back to tutorial index</span></a> | <a class="reference internal" href="raster.html#qs-raster"><span>Back to previous tutorial</span></a> | <a class="reference internal" href="projections.html#qs-projections"><span>Proceed to next tutorial</span></a></p>
+</div>
 </div>
 
 
@@ -156,6 +333,17 @@
 <a href="../../documentation.html" title="Documentation">Documentation</a><br>
 <a href="../../faq.html" title="FAQ">FAQ</a>
 </p>
+  <h3>Current Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">7. Using Different Datasources</a><ul>
+<li><a class="reference internal" href="#live-example">7.1. Live Example</a></li>
+<li><a class="reference internal" href="#shapefile">7.2. Shapefile</a></li>
+<li><a class="reference internal" href="#spatialite">7.3. Spatialite</a></li>
+<li><a class="reference internal" href="#postgis">7.4. PostGIS</a></li>
+</ul>
+</li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3>Szybkie wyszukiwanie</h3>
     <form class="search" action="../../search.html" method="get">

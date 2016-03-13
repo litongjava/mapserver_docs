@@ -110,9 +110,10 @@
             
   <div class="section" id="map-with-a-single-layer">
 <span id="qs-single-layer"></span><h1>1. Map with A Single Layer<a class="headerlink" href="#map-with-a-single-layer" title="Permalink to this headline">¶</a></h1>
-<p>This first tutorial shows how MapServer can display a dataset on a web page. The layer is
-served as a WMS this stands for Web Map Service, which is a &#8220;web-based interoperability service&#8221;
-based on specifications published by the Open Geospatial Consortium (OGC).</p>
+<p>This first tutorial shows how MapServer can display a dataset on a web page. To
+do this, we will make MapServer work as a WMS server. This stands for Web Map
+Service, which is a &#8220;web-based interoperability service&#8221; based on specifications
+published by the Open Geospatial Consortium (OGC).</p>
 <p>The data used in this example is a polygon shapefile displaying the world&#8217;s landmass.</p>
 <div class="section" id="live-example">
 <h2>1.1. Live Example<a class="headerlink" href="#live-example" title="Permalink to this headline">¶</a></h2>
@@ -184,13 +185,13 @@ the data displayed in an <a class="reference external" href="http://openlayers.o
 <div class="section" id="mapfile-structure">
 <h2>1.2. Mapfile Structure<a class="headerlink" href="#mapfile-structure" title="Permalink to this headline">¶</a></h2>
 <p>This is what the mapfile looks like: <a class="reference internal" href="single_layer.map.html#qs-single-layer-map"><span>single_layer.map</span></a>.</p>
-<p>The <a class="reference internal" href="../../mapfile/index.html#mapfile"><span>MAPFILE</span></a> is MapServer&#8217;s basic configuration
-mechanism. It is made up of &#8220;objects&#8221; and each object can have
-keywords or other objects. It has a hierarchical structure such that
-some objects are beneath under other objects. At the top of this hierarchy is
-the MAP object - to which all other objects belong. This example shows a
-very straightforward hierarchy of objects.  As you go through each tutorial step,
-the complexity of these hierarchical trees will increase.</p>
+<p>The <a class="reference internal" href="../../mapfile/index.html#mapfile"><span>MAPFILE</span></a> is MapServer&#8217;s basic configuration mechanism. It is
+made up of &#8220;objects&#8221; and each object is made of keywords or other objects. It
+has a hierarchical structure such that some objects are beneath under other
+objects. At the top of this hierarchy is the MAP object - to which all other
+objects belong. This example shows a very straightforward hierarchy of objects.
+As you go through each tutorial step, the complexity of these hierarchical trees
+will increase.</p>
 <p>A few quick notes about mapfiles: we define each object in the mapfile
 with the object name and we close it with &#8220;END&#8221; and we precede
 comments with a pound (#) sign.</p>
@@ -214,7 +215,7 @@ entire mapfile is the MAP object.</dd>
 can generate. In this example we are using PNG images as an output. These
 are discussed further in the <a class="reference internal" href="../advanced/output_formats.html#adv-output-formats"><span>output formats tutorial</span></a></dd>
 <dt><strong>EXTENT</strong></dt>
-<dd>This parameter specifies the output extent of our map&#8211;the bounding
+<dd>This parameter specifies the output extent of our map &#8211; the bounding
 box of our initial map.  The EXTENT values are given in this
 format:</dd>
 </dl>

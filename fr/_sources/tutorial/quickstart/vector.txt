@@ -2,6 +2,10 @@
 
 .. _qs_vector:
 
-=======================
+===================
 Serving Vector Data
-=======================
+===================
+
+
+In addition, Jeff McKenna and Tyler Mitchell have written a detailed :ref:`guide
+to using vector data for MapServer <vector>`.

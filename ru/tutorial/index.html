@@ -139,8 +139,6 @@
             
   <div class="section" id="mapserver-tutorials">
 <span id="tutorial"></span><span id="index-0"></span><h1>MapServer Tutorials<a class="headerlink" href="#mapserver-tutorials" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="section" id="tutorials-for-mapserver-6">
-<h2>Tutorials for MapServer 6+<a class="headerlink" href="#tutorials-for-mapserver-6" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -169,8 +167,18 @@
 </tr>
 </tbody>
 </table>
-<div class="section" id="quickstart-your-first-mapfile">
-<h3>Quickstart - Your First MapFile<a class="headerlink" href="#quickstart-your-first-mapfile" title="Ссылка на этот заголовок">¶</a></h3>
+<p>This tutorial was design to help new users start quickly with MapServer 7.0 and
+6.4. You should follow the order of the sections since they are sorted by
+difficulty and each section is built on the previous one. Each section presents
+a feature of MapServer, a MapFile illustrating the use of the feature and a
+small embed demonstration to show you how the result must look like.</p>
+<p>If you want to test the demo on your server, you&#8217;ll need:</p>
+<ul class="simple">
+<li>A working installation of MapServer. Go to the <a class="reference internal" href="../installation/index.html#installation"><span>installation section</span></a> of the documentation to find out how to do that.</li>
+<li>Data which can be found <a class="reference external" href="https://github.com/gislars/mapserver-tutorial-data">here</a>.</li>
+</ul>
+<div class="section" id="quickstart-your-first-mapfiles">
+<h2>Quickstart - Your First MapFiles<a class="headerlink" href="#quickstart-your-first-mapfiles" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart/single_layer.html">1. Map with A Single Layer</a></li>
@@ -182,63 +190,9 @@
 <li class="toctree-l1"><a class="reference internal" href="quickstart/datasources.html">7. Using Different Datasources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart/projections.html">8. Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart/vector.html">9. Serving Vector Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart/anatomy.html">10. Anatomy of a MapServer application</a></li>
 </ul>
 </div>
-</div>
-</div>
-<div class="section" id="legacy-tutorials-for-mapserver-5-x">
-<h2>Legacy Tutorials for MapServer 5.x<a class="headerlink" href="#legacy-tutorials-for-mapserver-5-x" title="Ссылка на этот заголовок">¶</a></h2>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Pericles S. Nacionales</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Contact:</th><td class="field-body">pnaciona at gmail.com</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Jeff McKenna</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Contact:</th><td class="field-body">jmckenna at gatewaygeomatics.com</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Updated:</th><td class="field-body">2010-04-07</td>
-</tr>
-</tbody>
-</table>
-<p>This tutorial was designed to give new users a quick (relatively
-speaking) introduction to the concepts behind MapServer. It is
-arranged into four sections with each section having one or more
-examples and increasing in complexity.  Users can jump to any section
-at any time although it is recommended that absolute beginners work on
-the first three sections sequentially.</p>
-<p>Section one focuses on basic MapServer configuration concepts such as
-layer and class ordering, using vector and raster data, projections
-and labeling.  Section two provides examples on how to use HTML
-templates to create a simple interface for an interactive web mapping
-application. Section three introduces the use of HTML templates to
-provide a &#8220;query&#8221; interface. Finally, section four introduces some
-advanced user interface concepts.</p>
-<p><a class="reference internal" href="legacy/background.html#tutorial-background"><span>Begin tutorial</span></a></p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="legacy/background.html">Tutorial background</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="legacy/background.html#tutorial-timeframe">Tutorial Timeframe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="legacy/background.html#tutorial-data">Tutorial Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="legacy/background.html#before-using-the-tutorial">Before Using the Tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="legacy/background.html#windows-unix-linux-issues">Windows, UNIX/Linux Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="legacy/background.html#other-resources">Other Resources</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="legacy/section1.html">Section 1: Static Maps and the MapFile</a></li>
-<li class="toctree-l1"><a class="reference internal" href="legacy/section2.html">Section 2: CGI variables and the User Interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="legacy/section2.html#html-templates">HTML Templates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="legacy/section2.html#examples">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="legacy/section3.html">Section 3: Query and more about HTML Templates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="legacy/section4.html">Section 4: Advanced User Interfaces</a></li>
-</ul>
-</div>
-<hr class="docutils" />
 </div>
 </div>
 
@@ -260,11 +214,7 @@ advanced user interface concepts.</p>
   <h3>Current Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">MapServer Tutorials</a><ul>
-<li><a class="reference internal" href="#tutorials-for-mapserver-6">Tutorials for MapServer 6+</a><ul>
-<li><a class="reference internal" href="#quickstart-your-first-mapfile">Quickstart - Your First MapFile</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#legacy-tutorials-for-mapserver-5-x">Legacy Tutorials for MapServer 5.x</a></li>
+<li><a class="reference internal" href="#quickstart-your-first-mapfiles">Quickstart - Your First MapFiles</a></li>
 </ul>
 </li>
 </ul>
