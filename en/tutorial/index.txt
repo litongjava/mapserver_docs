@@ -19,8 +19,23 @@
 :Status: Draft
 :Updated: 2016-02-24
 
-Quickstart - Your First MapFile
-+++++++++++++++++++++++++++++++
+
+This tutorial was design to help new users start quickly with MapServer 7.0 and
+6.4. You should follow the order of the sections since they are sorted by
+difficulty and each section is built on the previous one. Each section presents
+a feature of MapServer, a MapFile illustrating the use of the feature and a
+small embed demonstration to show you how the result must look like.
+
+If you want to test the demo on your server, you'll need:
+
+- A working installation of MapServer. Go to the :ref:`installation section
+  <installation>` of the documentation to find out how to do that.
+- Data which can be found `here
+  <https://github.com/gislars/mapserver-tutorial-data>`__.
+
+
+Quickstart - Your First MapFiles
+++++++++++++++++++++++++++++++++
 
 .. toctree::
    :maxdepth: 1
