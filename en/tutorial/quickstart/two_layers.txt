@@ -5,8 +5,8 @@ A Map with Two Layers
 =====================
 
 This second tutorial explains how to add a layer to your mapfile. We will use a
-polygon shapefile displaying the world landmass and a polygon shapefile
-displaying the world oceans.
+polygon shapefile displaying the world's landmass and a polygon shapefile
+displaying the oceans.
 
 Live Example
 ------------
@@ -31,11 +31,12 @@ layer object must have:
 
 - a unique ``NAME`` attribute.
 - a ``PROJECTION`` object that tells MapServer in which projection the data is
-  so it can draw it correctly.
+  so it can draw it correctly. If the data is in the same projection as the map object's
+  projection then you do not need to set it on the layer. 
 - a ``DATA`` attribute which value is the path to the shapefile you want to use.
-- a ``CLASS`` object which describes how the data must be rendered.
+- a ``CLASS`` object which describes how the data should be rendered.
 
-To add the ocean layer, append in the map object the following lines:
+To add the ocean layer, append the following lines to the map object:
 
 .. literalinclude:: two_layers.map
    :language: mapfile
